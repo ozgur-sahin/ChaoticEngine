@@ -50,6 +50,8 @@ int main()
         }
         CHRenderer.FrameClear();
         CHRenderer.DrawRectangle(100, 100, 50, 50, 255, 0, 0, 255);
+        CHRenderer.DrawTriangle();
+        CHRenderer.DrawCircle(100);
 
         CHRenderer.RenderFrame();
     }

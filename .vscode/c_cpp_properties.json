@@ -14,8 +14,9 @@
         },
         {
             "name": "Linux",
-            "includePath": [
-                "${workspaceFolder}/**"
+             "includePath": [
+                "${workspaceFolder}/src/**",
+                "${workspaceFolder}/engine/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",
