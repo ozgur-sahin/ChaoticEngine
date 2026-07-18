@@ -1,6 +1,9 @@
 #include <SDL3/SDL.h>
+#include <SDL3/SDL_main.h>
 #include <iostream>
 #include <core/logger/logger.h>
+#include <string>
+#include <graphics/renderer/renderer.h>
 
 int main()
 {
@@ -10,10 +13,13 @@ int main()
         return 1;
     }
 
+    const int WindowHeight = 800;
+    const int WindowWidth = 600;
+
     SDL_Window *window = SDL_CreateWindow(
         "ChaoticEngine",
-        800,
-        600,
+        WindowHeight,
+        WindowWidth,
         0);
 
     Logger::Info("Window started...");
@@ -24,9 +30,11 @@ int main()
         return 1;
     }
 
+    Renderer CHRenderer(window);
+
     bool running = true;
 
-    Logger::Info("Loop starting now...");
+    Logger::Info("Game loop starting now...");
 
     while (running)
     {
@@ -40,6 +48,10 @@ int main()
                 Logger::Info("Window no longer running...");
             }
         }
+        CHRenderer.FrameClear();
+        CHRenderer.DrawRectangle(100, 100, 50, 50, 255, 0, 0, 255);
+
+        CHRenderer.RenderFrame();
     }
 
     SDL_DestroyWindow(window);
