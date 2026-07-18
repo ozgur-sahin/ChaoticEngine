@@ -1,11 +1,12 @@
 #include <SDL3/SDL.h>
 #include <iostream>
+#include <core/logger/logger.h>
 
 int main()
 {
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
-        std::cout << "SDL initialization failed\n";
+        Logger::Error("SDL initialization failed\n");
         return 1;
     }
 
@@ -15,13 +16,17 @@ int main()
         600,
         0);
 
+    Logger::Info("Window started...");
+
     if (!window)
     {
-        std::cout << "Window creation failed\n";
+        Logger::Error("Window creation failed...");
         return 1;
     }
 
     bool running = true;
+
+    Logger::Info("Loop starting now...");
 
     while (running)
     {
@@ -30,7 +35,10 @@ int main()
         while (SDL_PollEvent(&event))
         {
             if (event.type == SDL_EVENT_QUIT)
+            {
                 running = false;
+                Logger::Info("Window no longer running...");
+            }
         }
     }
 
