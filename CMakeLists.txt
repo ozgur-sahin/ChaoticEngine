@@ -22,6 +22,8 @@ set(SOURCE_FILES
 # This assumes the SDL source is available in vendored/SDL
 add_subdirectory(vendored/SDL EXCLUDE_FROM_ALL)
 
+add_subdirectory(vendored/SDL_image EXCLUDE_FROM_ALL)
+
 # Create your game executable target as usual
 add_executable(ChaoticEngine 
                 ${SOURCE_FILES}
@@ -30,7 +32,7 @@ add_executable(ChaoticEngine
 target_include_directories(ChaoticEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/engine)
 
 # Link to the actual SDL3 library.
-target_link_libraries(ChaoticEngine PRIVATE SDL3::SDL3)
+target_link_libraries(ChaoticEngine PRIVATE SDL3::SDL3 SDL3_image::SDL3_image)
 
 target_compile_features(ChaoticEngine PRIVATE cxx_std_20)
 
