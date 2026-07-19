@@ -1,4 +1,5 @@
 #include "renderer.h"
+#include <graphics/texture/Texture.h>
 
 Renderer::Renderer(SDL_Window *window)
 {
@@ -28,6 +29,11 @@ void Renderer::DrawRectangle(float x, float y, float w, float h, int r, int g, i
     SDL_SetRenderDrawColor(sdl_renderer, r, g, b, a);
     SDL_FRect rect{x, y, w, h};
     SDL_RenderFillRect(sdl_renderer, &rect);
+}
+
+void Renderer::DrawRectTexture(Texture *texture, SDL_FRect *destRect)
+{
+    SDL_RenderTexture(sdl_renderer, texture->GetSDL_Texture(), nullptr, destRect);
 }
 
 void Renderer::DrawTriangle()
@@ -93,4 +99,9 @@ void Renderer::FrameClear()
 void Renderer::RenderFrame()
 {
     SDL_RenderPresent(sdl_renderer);
+}
+
+SDL_Renderer *Renderer::GetSDL_Renderer()
+{
+    return sdl_renderer;
 }

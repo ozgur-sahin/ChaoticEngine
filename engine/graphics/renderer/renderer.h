@@ -1,10 +1,11 @@
-#pragma once
-
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 #include <cmath>
 #include <numbers>
 #include <core/logger/logger.h>
+// #include <graphics/texture/Texture.h>
+
+class Texture;
 
 class Renderer
 {
@@ -18,6 +19,9 @@ public:
     void FrameClear();
     void DrawTriangle();
     void DrawCircle(int);
+    void DrawRectTexture(Texture *, SDL_FRect *);
+
+    SDL_Renderer *GetSDL_Renderer();
 
     static SDL_FPoint RotationTheta(const SDL_FPoint &, const float);
 };

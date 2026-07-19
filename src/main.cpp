@@ -4,9 +4,14 @@
 #include <core/logger/logger.h>
 #include <string>
 #include <graphics/renderer/renderer.h>
+#include <graphics/texture/Texture.h>
+#include <filesystem>
 
 int main()
 {
+
+    std::cout << std::filesystem::current_path() << '\n';
+
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
         Logger::Error("SDL initialization failed\n");
@@ -36,6 +41,10 @@ int main()
 
     Logger::Info("Game loop starting now...");
 
+    Texture Player(&CHRenderer, "assets/textures/RedPlayerSpriteSheet.png");
+
+    SDL_FRect rect{200, 200, 150, 200};
+
     while (running)
     {
         SDL_Event event;
@@ -52,6 +61,7 @@ int main()
         CHRenderer.DrawRectangle(100, 100, 50, 50, 255, 0, 0, 255);
         CHRenderer.DrawTriangle();
         CHRenderer.DrawCircle(100);
+        CHRenderer.DrawRectTexture(&Player, &rect);
 
         CHRenderer.RenderFrame();
     }

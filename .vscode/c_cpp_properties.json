@@ -14,7 +14,7 @@
         },
         {
             "name": "Linux",
-             "includePath": [
+            "includePath": [
                 "${workspaceFolder}/src/**",
                 "${workspaceFolder}/engine/**"
             ],
