@@ -19,5 +19,5 @@ public:
     void DrawTriangle();
     void DrawCircle(int);
 
-    static SDL_FPoint RotationTheta(const SDL_FPoint &, float);
+    static SDL_FPoint RotationTheta(const SDL_FPoint &, const float);
 };

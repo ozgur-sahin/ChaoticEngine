@@ -15,7 +15,7 @@ Renderer::~Renderer()
     Logger::Info("SDL renderer deleted...");
 }
 
-SDL_FPoint Renderer::RotationTheta(const SDL_FPoint &point, float theta)
+SDL_FPoint Renderer::RotationTheta(const SDL_FPoint &point, const float theta)
 {
     SDL_FPoint RotatedPoint{
         point.x * std::cos(theta) - point.y * std::sin(theta),
@@ -51,7 +51,10 @@ void Renderer::DrawTriangle()
         {0, 0},
     };
 
-    SDL_RenderGeometry(sdl_renderer, nullptr, vertices, 3, nullptr, 0);
+    if (!SDL_RenderGeometry(sdl_renderer, nullptr, vertices, 3, nullptr, 0))
+    {
+        Logger::Error("Error drawing a triangle!");
+    };
 }
 
 void Renderer::DrawCircle(int vertexno)
@@ -75,7 +78,10 @@ void Renderer::DrawCircle(int vertexno)
                            point.y + center[1]};
     }
 
-    SDL_RenderLines(sdl_renderer, points.data(), points.size());
+    if (!SDL_RenderLines(sdl_renderer, points.data(), points.size()))
+    {
+        Logger::Error("Error drawing a circle!");
+    };
 }
 
 void Renderer::FrameClear()
