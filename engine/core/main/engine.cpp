@@ -26,11 +26,20 @@ ChEngine::~ChEngine()
 
 void ChEngine::run()
 {
-    ChTexture Player(renderer, "assets/textures/RedPlayerSpriteSheet.png");
+    SDL_FRect Walk1Rect{0, 0, 92.0 / 3.0, 128.0 / 4.0};
+    ChSprite WalkingPlayerSprite(renderer, "assets/textures/RedPlayerSpriteSheet.png", Walk1Rect);
+
+    SDL_FRect Walk2Rect{2.0 * 92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
+    ChSprite WalkingPlayerSprite2(renderer, "assets/textures/RedPlayerSpriteSheet.png", Walk2Rect);
+
+    SDL_FRect IdleRect{92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
+    ChSprite IdlePlayerSprite(renderer, "assets/textures/RedPlayerSpriteSheet.png", IdleRect);
 
     bool running = true;
 
-    SDL_FRect rect{200, 200, 150, 200};
+    SDL_FRect destrect{400 - 75, 300 - 75, 150, 150};
+
+    int framecount = 0;
 
     while (running)
     {
@@ -41,15 +50,34 @@ void ChEngine::run()
             if (event.type == SDL_EVENT_QUIT)
             {
                 running = false;
-                Logger::Info("Window no longer running...");
+                // Logger::Info("Window no longer running...");
             }
         }
         renderer->FrameClear();
-        renderer->DrawRectangle(100, 100, 50, 50, 255, 0, 0, 255);
-        renderer->DrawTriangle();
-        renderer->DrawCircle(100);
-        renderer->DrawRectTexture(&Player, &rect);
+        // renderer->DrawRectangle(100, 100, 50, 50, 255, 0, 0, 255);
+        // renderer->DrawTriangle();
+        // renderer->DrawCircle(100);
 
+        switch ((framecount / 200) % 4)
+        {
+        case (0):
+            renderer->DrawRectTexture(&IdlePlayerSprite, &destrect);
+            break;
+
+        case (1):
+            renderer->DrawRectTexture(&WalkingPlayerSprite, &destrect);
+            break;
+
+        case (2):
+            renderer->DrawRectTexture(&IdlePlayerSprite, &destrect);
+            break;
+
+        case (3):
+            renderer->DrawRectTexture(&WalkingPlayerSprite2, &destrect);
+            break;
+        }
         renderer->RenderFrame();
+
+        framecount++;
     }
 }

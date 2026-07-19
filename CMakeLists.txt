@@ -20,6 +20,7 @@ set(SOURCE_FILES
     engine/graphics/texture/Texture.cpp
     engine/core/window/window.cpp
     engine/core/main/engine.cpp
+    engine/graphics/sprite/sprite.cpp
     )
 
 # This assumes the SDL source is available in vendored/SDL

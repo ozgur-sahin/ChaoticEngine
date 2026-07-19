@@ -6,6 +6,8 @@
 #include <numbers>
 #include <core/logger/logger.h>
 
+class ChSprite;
+
 class ChWindow;
 
 class ChTexture;
@@ -22,7 +24,8 @@ public:
     void FrameClear();
     void DrawTriangle();
     void DrawCircle(int);
-    void DrawRectTexture(ChTexture *, SDL_FRect *);
+    void DrawRectTexture(ChTexture *, SDL_FRect *, SDL_FRect *srcRect = nullptr);
+    void DrawRectTexture(ChSprite *, SDL_FRect *);
 
     SDL_Renderer *GetSDL_Renderer();
 

@@ -1,6 +1,7 @@
 #include "renderer.h"
 #include <graphics/texture/Texture.h>
 #include <core/window/window.h>
+#include <graphics/sprite/sprite.h>
 
 ChRenderer::ChRenderer(ChWindow *window)
 {
@@ -14,7 +15,7 @@ ChRenderer::ChRenderer(ChWindow *window)
 ChRenderer::~ChRenderer()
 {
     SDL_DestroyRenderer(sdl_renderer);
-    Logger::Info("SDL renderer deleted...");
+    // Logger::Info("SDL renderer deleted...");
 }
 
 SDL_FPoint ChRenderer::RotationTheta(const SDL_FPoint &point, const float theta)
@@ -32,9 +33,14 @@ void ChRenderer::DrawRectangle(float x, float y, float w, float h, int r, int g,
     SDL_RenderFillRect(sdl_renderer, &rect);
 }
 
-void ChRenderer::DrawRectTexture(ChTexture *texture, SDL_FRect *destRect)
+void ChRenderer::DrawRectTexture(ChTexture *texture, SDL_FRect *destRect, SDL_FRect *srcRect)
 {
-    SDL_RenderTexture(sdl_renderer, texture->GetSDL_Texture(), nullptr, destRect);
+    SDL_RenderTexture(sdl_renderer, texture->GetSDL_Texture(), srcRect, destRect);
+}
+
+void ChRenderer::DrawRectTexture(ChSprite *sprite, SDL_FRect *destRect)
+{
+    SDL_RenderTexture(sdl_renderer, sprite->GetSpriteSheet()->GetSDL_Texture(), sprite->GetSrcRect(), destRect);
 }
 
 void ChRenderer::DrawTriangle()
