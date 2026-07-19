@@ -1,8 +1,10 @@
 #include <core/window/window.h>
 #include <core/logger/logger.h>
 
-ChWindow::ChWindow(const int WindowWidth, const int WindowHeight)
+ChWindow::ChWindow(const int w, const int h)
 {
+    WindowHeight = h;
+    WindowWidth = w;
     sdl_window = SDL_CreateWindow("Chaotic Engine", WindowWidth, WindowHeight, 0);
 
     if (!sdl_window)

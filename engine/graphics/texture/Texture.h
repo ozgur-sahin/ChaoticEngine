@@ -10,6 +10,8 @@ class ChRenderer;
 class ChTexture
 {
     SDL_Texture *sdl_texture;
+    int h;
+    int w;
 
 public:
     ChTexture(SDL_Renderer *, const int, const int);

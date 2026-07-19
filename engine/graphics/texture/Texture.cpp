@@ -20,6 +20,9 @@ ChTexture::ChTexture(ChRenderer *renderer, std::string filename)
     }
     sdl_texture = SDL_CreateTextureFromSurface(renderer->GetSDL_Renderer(), sdl_surface);
     SDL_DestroySurface(sdl_surface);
+
+    w = sdl_surface->w;
+    h = sdl_surface->h;
 }
 
 ChTexture::~ChTexture()

@@ -6,6 +6,8 @@
 class ChWindow
 {
     SDL_Window *sdl_window;
+    int WindowHeight;
+    int WindowWidth;
 
 public:
     ChWindow(const int, const int);
