@@ -5,12 +5,11 @@
 #include <string>
 #include <graphics/renderer/renderer.h>
 #include <graphics/texture/Texture.h>
+#include <core/window/window.h>
 #include <filesystem>
 
 int main()
 {
-
-    std::cout << std::filesystem::current_path() << '\n';
 
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -21,21 +20,11 @@ int main()
     const int WindowHeight = 800;
     const int WindowWidth = 600;
 
-    SDL_Window *window = SDL_CreateWindow(
-        "ChaoticEngine",
-        WindowHeight,
-        WindowWidth,
-        0);
+    Window window(WindowHeight, WindowWidth);
 
     Logger::Info("Window started...");
 
-    if (!window)
-    {
-        Logger::Error("Window creation failed...");
-        return 1;
-    }
-
-    Renderer CHRenderer(window);
+    Renderer CHRenderer(&window);
 
     bool running = true;
 
@@ -65,8 +54,6 @@ int main()
 
         CHRenderer.RenderFrame();
     }
-
-    SDL_DestroyWindow(window);
     SDL_Quit();
 
     return 0;

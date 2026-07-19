@@ -18,6 +18,7 @@ set(SOURCE_FILES
     engine/core/logger/logger.cpp
     engine/graphics/renderer/renderer.cpp
     engine/graphics/texture/Texture.cpp
+    engine/core/window/window.cpp
     )
 
 # This assumes the SDL source is available in vendored/SDL

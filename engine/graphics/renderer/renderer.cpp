@@ -1,9 +1,10 @@
 #include "renderer.h"
 #include <graphics/texture/Texture.h>
+#include <core/window/window.h>
 
-Renderer::Renderer(SDL_Window *window)
+Renderer::Renderer(Window *window)
 {
-    sdl_renderer = SDL_CreateRenderer(window, nullptr);
+    sdl_renderer = SDL_CreateRenderer(window->GetSDL_Window(), nullptr);
     if (!sdl_renderer)
     {
         Logger::Error("SDL Renderer failed to initialize!");

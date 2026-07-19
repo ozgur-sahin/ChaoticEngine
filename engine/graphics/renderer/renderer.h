@@ -5,6 +5,8 @@
 #include <core/logger/logger.h>
 // #include <graphics/texture/Texture.h>
 
+class Window;
+
 class Texture;
 
 class Renderer
@@ -12,7 +14,7 @@ class Renderer
     SDL_Renderer *sdl_renderer;
 
 public:
-    Renderer(SDL_Window *);
+    Renderer(Window *);
     ~Renderer();
     void DrawRectangle(float, float, float, float, int, int, int, int);
     void RenderFrame();
