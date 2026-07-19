@@ -1,7 +1,7 @@
 #include <core/window/window.h>
 #include <core/logger/logger.h>
 
-Window::Window(const int WindowWidth, const int WindowHeight)
+ChWindow::ChWindow(const int WindowWidth, const int WindowHeight)
 {
     sdl_window = SDL_CreateWindow("Chaotic Engine", WindowWidth, WindowHeight, 0);
 
@@ -12,12 +12,12 @@ Window::Window(const int WindowWidth, const int WindowHeight)
     }
 }
 
-Window::~Window()
+ChWindow::~ChWindow()
 {
     SDL_DestroyWindow(sdl_window);
 }
 
-SDL_Window *Window::GetSDL_Window()
+SDL_Window *ChWindow::GetSDL_Window()
 {
     return sdl_window;
 }

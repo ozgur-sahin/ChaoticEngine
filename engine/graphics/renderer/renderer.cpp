@@ -2,7 +2,7 @@
 #include <graphics/texture/Texture.h>
 #include <core/window/window.h>
 
-Renderer::Renderer(Window *window)
+ChRenderer::ChRenderer(ChWindow *window)
 {
     sdl_renderer = SDL_CreateRenderer(window->GetSDL_Window(), nullptr);
     if (!sdl_renderer)
@@ -11,13 +11,13 @@ Renderer::Renderer(Window *window)
     }
 }
 
-Renderer::~Renderer()
+ChRenderer::~ChRenderer()
 {
     SDL_DestroyRenderer(sdl_renderer);
     Logger::Info("SDL renderer deleted...");
 }
 
-SDL_FPoint Renderer::RotationTheta(const SDL_FPoint &point, const float theta)
+SDL_FPoint ChRenderer::RotationTheta(const SDL_FPoint &point, const float theta)
 {
     SDL_FPoint RotatedPoint{
         point.x * std::cos(theta) - point.y * std::sin(theta),
@@ -25,19 +25,19 @@ SDL_FPoint Renderer::RotationTheta(const SDL_FPoint &point, const float theta)
     return RotatedPoint;
 }
 
-void Renderer::DrawRectangle(float x, float y, float w, float h, int r, int g, int b, int a)
+void ChRenderer::DrawRectangle(float x, float y, float w, float h, int r, int g, int b, int a)
 {
     SDL_SetRenderDrawColor(sdl_renderer, r, g, b, a);
     SDL_FRect rect{x, y, w, h};
     SDL_RenderFillRect(sdl_renderer, &rect);
 }
 
-void Renderer::DrawRectTexture(Texture *texture, SDL_FRect *destRect)
+void ChRenderer::DrawRectTexture(ChTexture *texture, SDL_FRect *destRect)
 {
     SDL_RenderTexture(sdl_renderer, texture->GetSDL_Texture(), nullptr, destRect);
 }
 
-void Renderer::DrawTriangle()
+void ChRenderer::DrawTriangle()
 {
     SDL_Vertex vertices[3];
     vertices[0] = SDL_Vertex{
@@ -64,7 +64,7 @@ void Renderer::DrawTriangle()
     };
 }
 
-void Renderer::DrawCircle(int vertexno)
+void ChRenderer::DrawCircle(int vertexno)
 {
     float radius = 100.0f;
     float center[2]{400.0f, 300.0f};
@@ -75,7 +75,7 @@ void Renderer::DrawCircle(int vertexno)
 
     for (int i = 1; i < vertexno; i++)
     {
-        points.push_back(Renderer::RotationTheta(points.at(i - 1), theta));
+        points.push_back(ChRenderer::RotationTheta(points.at(i - 1), theta));
     }
     points.push_back({radius, 0});
 
@@ -91,18 +91,18 @@ void Renderer::DrawCircle(int vertexno)
     };
 }
 
-void Renderer::FrameClear()
+void ChRenderer::FrameClear()
 {
     SDL_SetRenderDrawColor(sdl_renderer, 255, 255, 255, 255);
     SDL_RenderClear(sdl_renderer);
 }
 
-void Renderer::RenderFrame()
+void ChRenderer::RenderFrame()
 {
     SDL_RenderPresent(sdl_renderer);
 }
 
-SDL_Renderer *Renderer::GetSDL_Renderer()
+SDL_Renderer *ChRenderer::GetSDL_Renderer()
 {
     return sdl_renderer;
 }

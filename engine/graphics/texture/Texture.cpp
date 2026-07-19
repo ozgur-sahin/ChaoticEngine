@@ -1,16 +1,16 @@
 #include <graphics/texture/Texture.h>
 #include <graphics/renderer/renderer.h>
 
-// Texture::Texture(SDL_Renderer *renderer, int w, int h)
-// {
-//     sdl_texture = SDL_CreateTexture(renderer,
-//                                     SDL_PIXELFORMAT_UNKNOWN,
-//                                     SDL_TEXTUREACCESS_STATIC,
-//                                     w,
-//                                     h);
-// }
+ChTexture::ChTexture(SDL_Renderer *renderer, int w, int h)
+{
+    sdl_texture = SDL_CreateTexture(renderer,
+                                    SDL_PIXELFORMAT_UNKNOWN,
+                                    SDL_TEXTUREACCESS_STATIC,
+                                    w,
+                                    h);
+}
 
-Texture::Texture(Renderer *renderer, std::string filename)
+ChTexture::ChTexture(ChRenderer *renderer, std::string filename)
 {
     SDL_Surface *sdl_surface = IMG_Load(filename.data());
     if (!sdl_surface)
@@ -22,12 +22,12 @@ Texture::Texture(Renderer *renderer, std::string filename)
     SDL_DestroySurface(sdl_surface);
 }
 
-Texture::~Texture()
+ChTexture::~ChTexture()
 {
     SDL_DestroyTexture(sdl_texture);
 }
 
-SDL_Texture *Texture::GetSDL_Texture()
+SDL_Texture *ChTexture::GetSDL_Texture()
 {
     return sdl_texture;
 }

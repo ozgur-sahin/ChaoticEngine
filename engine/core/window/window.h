@@ -3,12 +3,12 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
 
-class Window
+class ChWindow
 {
     SDL_Window *sdl_window;
 
 public:
-    Window(const int, const int);
-    ~Window();
+    ChWindow(const int, const int);
+    ~ChWindow();
     SDL_Window *GetSDL_Window();
 };
