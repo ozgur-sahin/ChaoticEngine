@@ -3,6 +3,7 @@
 ChEngine::ChEngine(const int WindowHeight, const int WindowWidth)
     : window(WindowHeight, WindowWidth),
       renderer(&window),
+      clock()
 {
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -71,6 +72,11 @@ void ChEngine::run()
             break;
         }
         renderer.RenderFrame();
+
+        clock.Update();
+
+        Logger::Info("Frametime = " + std::to_string(clock.GetDeltaTime()) + "ms");
+        Logger::Info("FPS: " + std::to_string(1000.0 / clock.GetDeltaTime()));
 
         framecount++;
     }

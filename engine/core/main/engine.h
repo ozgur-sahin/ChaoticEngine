@@ -9,6 +9,7 @@
 #include <graphics/texture/Texture.h>
 #include <graphics/sprite/sprite.h>
 #include <core/window/window.h>
+#include <core/time/clock.h>
 #include <filesystem>
 
 class ChEngine
@@ -17,6 +18,7 @@ class ChEngine
 
     ChRenderer renderer;
 
+    ChClock clock;
 
 public:
     ChEngine(const int, const int);
