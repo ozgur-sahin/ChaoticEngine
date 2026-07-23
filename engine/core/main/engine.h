@@ -13,12 +13,13 @@
 
 class ChEngine
 {
-    ChWindow *window;
+    ChWindow window;
 
-    ChRenderer *renderer;
+    ChRenderer renderer;
+
 
 public:
-    ChEngine();
+    ChEngine(const int, const int);
     ~ChEngine();
     void run();
 };

@@ -2,7 +2,10 @@
 
 int main()
 {
-    ChEngine engine;
+    const int WindowHeight = 800;
+    const int WindowWidth = 600;
+
+    ChEngine engine{WindowHeight, WindowWidth};
 
     engine.run();
 

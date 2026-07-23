@@ -1,6 +1,8 @@
 #include <core/main/engine.h>
 
-ChEngine::ChEngine()
+ChEngine::ChEngine(const int WindowHeight, const int WindowWidth)
+    : window(WindowHeight, WindowWidth),
+      renderer(&window),
 {
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -8,32 +10,24 @@ ChEngine::ChEngine()
         throw std::runtime_error("SDL initialization failed. Aborting...\n");
     }
 
-    const int WindowHeight = 800;
-    const int WindowWidth = 600;
-
-    window = new ChWindow(WindowHeight, WindowWidth);
-    renderer = new ChRenderer(window);
-
     Logger::Info("Engine initialized...");
 }
 
 ChEngine::~ChEngine()
 {
-    delete window;
-    delete renderer;
     SDL_Quit();
 }
 
 void ChEngine::run()
 {
     SDL_FRect Walk1Rect{0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    ChSprite WalkingPlayerSprite(renderer, "assets/textures/RedPlayerSpriteSheet.png", Walk1Rect);
+    ChSprite WalkingPlayerSprite(&renderer, "assets/textures/RedPlayerSpriteSheet.png", Walk1Rect);
 
     SDL_FRect Walk2Rect{2.0 * 92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    ChSprite WalkingPlayerSprite2(renderer, "assets/textures/RedPlayerSpriteSheet.png", Walk2Rect);
+    ChSprite WalkingPlayerSprite2(&renderer, "assets/textures/RedPlayerSpriteSheet.png", Walk2Rect);
 
     SDL_FRect IdleRect{92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    ChSprite IdlePlayerSprite(renderer, "assets/textures/RedPlayerSpriteSheet.png", IdleRect);
+    ChSprite IdlePlayerSprite(&renderer, "assets/textures/RedPlayerSpriteSheet.png", IdleRect);
 
     bool running = true;
 
@@ -53,7 +47,7 @@ void ChEngine::run()
                 // Logger::Info("Window no longer running...");
             }
         }
-        renderer->FrameClear();
+        renderer.FrameClear();
         // renderer->DrawRectangle(100, 100, 50, 50, 255, 0, 0, 255);
         // renderer->DrawTriangle();
         // renderer->DrawCircle(100);
@@ -61,22 +55,22 @@ void ChEngine::run()
         switch ((framecount / 200) % 4)
         {
         case (0):
-            renderer->DrawRectTexture(&IdlePlayerSprite, &destrect);
+            renderer.DrawRectTexture(&IdlePlayerSprite, &destrect);
             break;
 
         case (1):
-            renderer->DrawRectTexture(&WalkingPlayerSprite, &destrect);
+            renderer.DrawRectTexture(&WalkingPlayerSprite, &destrect);
             break;
 
         case (2):
-            renderer->DrawRectTexture(&IdlePlayerSprite, &destrect);
+            renderer.DrawRectTexture(&IdlePlayerSprite, &destrect);
             break;
 
         case (3):
-            renderer->DrawRectTexture(&WalkingPlayerSprite2, &destrect);
+            renderer.DrawRectTexture(&WalkingPlayerSprite2, &destrect);
             break;
         }
-        renderer->RenderFrame();
+        renderer.RenderFrame();
 
         framecount++;
     }
