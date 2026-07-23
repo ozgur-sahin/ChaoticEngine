@@ -71,13 +71,20 @@ void ChEngine::run()
             renderer.DrawRectTexture(&WalkingPlayerSprite2, &destrect);
             break;
         }
-        renderer.RenderFrame();
-
         clock.Update();
+        ShowFPSCounter();
+
+        renderer.RenderFrame();
 
         Logger::Info("Frametime = " + std::to_string(clock.GetDeltaTime()) + "ms");
         Logger::Info("FPS: " + std::to_string(1000.0 / clock.GetDeltaTime()));
 
         framecount++;
     }
+}
+
+void ChEngine::ShowFPSCounter()
+{
+    double FPS = 1000.0 / clock.GetDeltaTime();
+    renderer.RenderDebugText(std::to_string(FPS) + " FPS");
 }

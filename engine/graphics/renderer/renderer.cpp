@@ -112,3 +112,12 @@ SDL_Renderer *ChRenderer::GetSDL_Renderer()
 {
     return sdl_renderer;
 }
+
+void ChRenderer::RenderDebugText(std::string Text)
+{
+    std::vector<Uint8> old_color(4);
+    SDL_GetRenderDrawColor(sdl_renderer, &old_color[0], &old_color[1], &old_color[2], &old_color[3]);
+    SDL_SetRenderDrawColor(sdl_renderer, 0, 0, 0, 255);
+    SDL_RenderDebugText(sdl_renderer, 0, 0, Text.c_str());
+    SDL_SetRenderDrawColor(sdl_renderer, old_color[0], old_color[1], old_color[2], old_color[3]);
+}

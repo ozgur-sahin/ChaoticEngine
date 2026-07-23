@@ -27,6 +27,8 @@ public:
     void DrawRectTexture(ChTexture *, SDL_FRect *, SDL_FRect *srcRect = nullptr);
     void DrawRectTexture(ChSprite *, SDL_FRect *);
 
+    void RenderDebugText(std::string);
+
     SDL_Renderer *GetSDL_Renderer();
 
     static SDL_FPoint RotationTheta(const SDL_FPoint &, const float);

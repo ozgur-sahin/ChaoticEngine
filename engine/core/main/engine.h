@@ -24,4 +24,5 @@ public:
     ChEngine(const int, const int);
     ~ChEngine();
     void run();
+    void ShowFPSCounter();
 };
