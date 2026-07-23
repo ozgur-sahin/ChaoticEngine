@@ -2,6 +2,8 @@
 
 #include <chrono>
 
+class ChRenderer;
+
 class ChClock
 {
 public:

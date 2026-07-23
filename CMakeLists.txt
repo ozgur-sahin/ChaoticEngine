@@ -21,7 +21,7 @@ set(SOURCE_FILES
     engine/core/window/window.cpp
     engine/core/main/engine.cpp
     engine/graphics/sprite/sprite.cpp
-    engine/core/time/clock.cpp
+    engine/core/time/game_clock.cpp
     )
 
 # This assumes the SDL source is available in vendored/SDL

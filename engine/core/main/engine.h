@@ -9,7 +9,7 @@
 #include <graphics/texture/Texture.h>
 #include <graphics/sprite/sprite.h>
 #include <core/window/window.h>
-#include <core/time/clock.h>
+#include <core/time/game_clock.h>
 #include <filesystem>
 
 class ChEngine

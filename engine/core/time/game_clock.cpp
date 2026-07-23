@@ -1,5 +1,6 @@
-#include "clock.h"
+#include "game_clock.h"
 #include <core/logger/logger.h>
+#include <graphics/renderer/renderer.h>
 
 ChClock::ChClock()
 {
@@ -18,5 +19,5 @@ void ChClock::Update()
     previous = current;
     current = Clock::now();
     deltaTime = current - previous;
-    Logger::Info("Deltatime: ");
+    // Logger::Info("Deltatime: ");
 }
