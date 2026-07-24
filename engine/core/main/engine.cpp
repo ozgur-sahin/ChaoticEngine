@@ -1,6 +1,6 @@
 #include <core/main/engine.h>
 
-ChEngine::ChEngine(const int WindowHeight, const int WindowWidth)
+ChEngine::ChEngine(const int WindowHeight, const int WindowWidth, const int FPS)
     : window(WindowHeight, WindowWidth),
       renderer(&window),
       clock()
@@ -12,6 +12,8 @@ ChEngine::ChEngine(const int WindowHeight, const int WindowWidth)
     }
 
     Logger::Info("Engine initialized...");
+    targetFPS = FPS;
+    targetFrametime = 1000.0 / targetFPS; // defined in milliseconds
 }
 
 ChEngine::~ChEngine()
@@ -53,7 +55,7 @@ void ChEngine::run()
         // renderer->DrawTriangle();
         // renderer->DrawCircle(100);
 
-        switch ((framecount / 200) % 4)
+        switch ((framecount / 100) % 4)
         {
         case (0):
             renderer.DrawRectTexture(&IdlePlayerSprite, &destrect);
@@ -72,6 +74,7 @@ void ChEngine::run()
             break;
         }
         clock.Update();
+        clock.EnforceFrameLimit(targetFrametime);
         ShowFPSCounter();
 
         renderer.RenderFrame();
@@ -86,5 +89,5 @@ void ChEngine::run()
 void ChEngine::ShowFPSCounter()
 {
     double FPS = 1000.0 / clock.GetDeltaTime();
-    renderer.RenderDebugText(std::to_string(FPS) + " FPS");
+    renderer.RenderDebugText(std::format("{:.2f} FPS", FPS));
 }
