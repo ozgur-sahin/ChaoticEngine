@@ -5,6 +5,7 @@
 #include <cmath>
 #include <numbers>
 #include <core/logger/logger.h>
+#include <vector>
 
 class ChSprite;
 
