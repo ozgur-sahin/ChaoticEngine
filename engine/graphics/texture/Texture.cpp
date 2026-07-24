@@ -30,7 +30,7 @@ ChTexture::~ChTexture()
     SDL_DestroyTexture(sdl_texture);
 }
 
-SDL_Texture *ChTexture::GetSDL_Texture()
+SDL_Texture *ChTexture::GetSDL_Texture() const
 {
     return sdl_texture;
 }

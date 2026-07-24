@@ -39,12 +39,12 @@ ChSprite::~ChSprite()
     delete srcRect;
 }
 
-ChTexture *ChSprite::GetSpriteSheet()
+ChTexture *ChSprite::GetSpriteSheet() const
 {
     return spritesheet;
 }
 
-SDL_FRect *ChSprite::GetSrcRect()
+SDL_FRect *ChSprite::GetSrcRect() const
 {
     return srcRect;
 }

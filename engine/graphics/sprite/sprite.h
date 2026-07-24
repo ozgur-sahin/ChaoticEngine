@@ -13,6 +13,6 @@ public:
     ChSprite(ChRenderer *, std::string, const SDL_FRect &);
     ChSprite(ChTexture *, const SDL_FRect &);
     ~ChSprite();
-    ChTexture *GetSpriteSheet();
-    SDL_FRect *GetSrcRect();
+    ChTexture *GetSpriteSheet() const;
+    SDL_FRect *GetSrcRect() const;
 };

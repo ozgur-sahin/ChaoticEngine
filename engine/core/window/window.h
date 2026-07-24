@@ -2,6 +2,7 @@
 
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
+#include <tuple>
 
 class ChWindow
 {
@@ -12,5 +13,6 @@ class ChWindow
 public:
     ChWindow(const int, const int);
     ~ChWindow();
-    SDL_Window *GetSDL_Window();
+    SDL_Window *GetSDL_Window() const;
+    const std::tuple<const int, const int> GetWindowSize() const;
 };

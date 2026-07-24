@@ -19,7 +19,12 @@ ChWindow::~ChWindow()
     SDL_DestroyWindow(sdl_window);
 }
 
-SDL_Window *ChWindow::GetSDL_Window()
+SDL_Window *ChWindow::GetSDL_Window() const
 {
     return sdl_window;
+}
+
+const std::tuple<const int, const int> ChWindow::GetWindowSize() const
+{
+    return std::tuple<const int, const int>{WindowHeight, WindowWidth};
 }

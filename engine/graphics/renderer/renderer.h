@@ -29,7 +29,7 @@ public:
 
     void RenderDebugText(std::string);
 
-    SDL_Renderer *GetSDL_Renderer();
+    SDL_Renderer *GetSDL_Renderer() const;
 
     static SDL_FPoint RotationTheta(const SDL_FPoint &, const float);
 };

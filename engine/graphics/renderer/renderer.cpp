@@ -108,7 +108,7 @@ void ChRenderer::RenderFrame()
     SDL_RenderPresent(sdl_renderer);
 }
 
-SDL_Renderer *ChRenderer::GetSDL_Renderer()
+SDL_Renderer *ChRenderer::GetSDL_Renderer() const
 {
     return sdl_renderer;
 }
