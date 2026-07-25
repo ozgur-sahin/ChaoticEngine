@@ -20,8 +20,11 @@ class ChEngine
 
     ChClock clock;
 
+    int targetFPS;
+    double targetFrametime;
+
 public:
-    ChEngine(const int, const int);
+    ChEngine(const int, const int, const int);
     ~ChEngine();
     void run();
     void ShowFPSCounter();

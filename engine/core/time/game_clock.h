@@ -20,4 +20,5 @@ public:
     ChClock();
     double GetDeltaTime() const;
     void Update();
+    void EnforceFrameLimit(double);
 };

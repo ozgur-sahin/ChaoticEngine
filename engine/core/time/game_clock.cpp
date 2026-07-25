@@ -1,6 +1,7 @@
 #include "game_clock.h"
 #include <core/logger/logger.h>
 #include <graphics/renderer/renderer.h>
+#include <thread>
 
 ChClock::ChClock()
 {
@@ -20,4 +21,15 @@ void ChClock::Update()
     current = Clock::now();
     deltaTime = current - previous;
     // Logger::Info("Deltatime: ");
+}
+
+void ChClock::EnforceFrameLimit(double targetFrametime)
+{
+    auto DurationTargetFrameTime = std::chrono::duration<double, std::milli>(targetFrametime);
+    if (deltaTime < DurationTargetFrameTime)
+    {
+        auto SleepDuration = DurationTargetFrameTime - deltaTime;
+        Logger::Info("Sleeping for " + std::to_string(SleepDuration.count()) + " ms");
+        std::this_thread::sleep_for(SleepDuration);
+    }
 }
