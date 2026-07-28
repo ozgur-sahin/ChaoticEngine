@@ -22,6 +22,10 @@ set(SOURCE_FILES
     engine/core/main/engine.cpp
     engine/graphics/sprite/sprite.cpp
     engine/core/time/game_clock.cpp
+    engine/core/actors/actor_components/transform.cpp
+    engine/core/actors/actor.cpp
+    engine/graphics/animation/actor_animator.cpp
+    # engine/graphics/animation/animation.cpp
     )
 
 # This assumes the SDL source is available in vendored/SDL

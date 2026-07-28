@@ -11,6 +11,8 @@
 #include <core/window/window.h>
 #include <core/time/game_clock.h>
 #include <filesystem>
+#include <graphics/animation/actor_animator.h>
+#include <graphics/animation/animation.h>
 
 class ChEngine
 {
