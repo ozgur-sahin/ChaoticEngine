@@ -4,15 +4,15 @@
 
 class ChSprite
 {
-    ChTexture *spritesheet;
-    SDL_FRect *srcRect;
-    int *sheetwidth;
-    int *sheetheight;
+    ChTexture *spritesheet{nullptr};
+    SDL_FRect srcRect{0, 0, 0, 0};
+    int sheetwidth{0};
+    int sheetheight{0};
 
 public:
-    ChSprite(ChRenderer *, std::string, const SDL_FRect &);
-    ChSprite(ChTexture *, const SDL_FRect &);
+    // ChSprite(ChRenderer *, std::string, const SDL_FRect);
+    ChSprite(ChTexture *, const SDL_FRect);
     ~ChSprite();
     ChTexture *GetSpriteSheet() const;
-    SDL_FRect *GetSrcRect() const;
+    const SDL_FRect GetSrcRect() const;
 };

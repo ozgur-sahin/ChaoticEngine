@@ -2,41 +2,39 @@
 #include "core/logger/logger.h"
 #include <cstring>
 
-ChSprite::ChSprite(ChRenderer *renderer, const std::string filename, const SDL_FRect &SourceRectangle)
+// ChSprite::ChSprite(ChRenderer *renderer, const std::string filename, SDL_FRect SourceRectangle)
+// {
+//     spritesheet = new ChTexture{renderer, filename};
+
+//     sheetheight = spritesheet->GetSDL_Texture()->h;
+//     sheetwidth = spritesheet->GetSDL_Texture()->w;
+
+//     Logger::Info("Width of sprite: " + std::to_string(sheetwidth));
+//     Logger::Info("Height of sprite: " + std::to_string(sheetheight));
+
+//     srcRect = SourceRectangle;
+// }
+
+ChSprite::ChSprite(ChTexture *sheet, SDL_FRect SourceRectangle) : spritesheet(sheet)
 {
-    spritesheet = new ChTexture{renderer, filename};
-
-    sheetheight = &spritesheet->GetSDL_Texture()->h;
-    sheetwidth = &spritesheet->GetSDL_Texture()->w;
-
-    Logger::Info("Width of sprite: " + std::to_string(*sheetwidth));
-    Logger::Info("Height of sprite: " + std::to_string(*sheetheight));
-
-    srcRect = new SDL_FRect{SourceRectangle};
-}
-
-ChSprite::ChSprite(ChTexture *sheet, const SDL_FRect &SourceRectangle)
-{
-    spritesheet = new ChTexture(*sheet);
+    // spritesheet = sheet;
 
     if (!spritesheet)
     {
         throw std::runtime_error("Invalid texture detected! Aborting...");
     }
 
-    sheetheight = &spritesheet->GetSDL_Texture()->h;
-    sheetwidth = &spritesheet->GetSDL_Texture()->w;
+    sheetheight = spritesheet->GetSDL_Texture()->h;
+    sheetwidth = spritesheet->GetSDL_Texture()->w;
 
-    Logger::Info("Width of sprite: " + std::to_string(*sheetwidth));
-    Logger::Info("Height of sprite: " + std::to_string(*sheetheight));
+    Logger::Info("Width of sprite: " + std::to_string(sheetwidth));
+    Logger::Info("Height of sprite: " + std::to_string(sheetheight));
 
-    srcRect = new SDL_FRect{SourceRectangle};
+    srcRect = SourceRectangle;
 }
 
 ChSprite::~ChSprite()
 {
-    delete spritesheet;
-    delete srcRect;
 }
 
 ChTexture *ChSprite::GetSpriteSheet() const
@@ -44,7 +42,7 @@ ChTexture *ChSprite::GetSpriteSheet() const
     return spritesheet;
 }
 
-SDL_FRect *ChSprite::GetSrcRect() const
+const SDL_FRect ChSprite::GetSrcRect() const
 {
     return srcRect;
 }

@@ -23,14 +23,16 @@ ChEngine::~ChEngine()
 
 void ChEngine::run()
 {
+    ChTexture RedSpriteSheet(&renderer, "assets/textures/RedPlayerSpriteSheet.png");
+
     SDL_FRect Walk1Rect{0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    ChSprite WalkingPlayerSprite(&renderer, "assets/textures/RedPlayerSpriteSheet.png", Walk1Rect);
+    ChSprite WalkingPlayerSprite(&RedSpriteSheet, Walk1Rect);
 
     SDL_FRect Walk2Rect{2.0 * 92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    ChSprite WalkingPlayerSprite2(&renderer, "assets/textures/RedPlayerSpriteSheet.png", Walk2Rect);
+    ChSprite WalkingPlayerSprite2(&RedSpriteSheet, Walk2Rect);
 
     SDL_FRect IdleRect{92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    ChSprite IdlePlayerSprite(&renderer, "assets/textures/RedPlayerSpriteSheet.png", IdleRect);
+    ChSprite IdlePlayerSprite(&RedSpriteSheet, IdleRect);
 
     bool running = true;
 

@@ -40,7 +40,8 @@ void ChRenderer::DrawRectTexture(ChTexture *texture, SDL_FRect *destRect, SDL_FR
 
 void ChRenderer::DrawRectTexture(ChSprite *sprite, SDL_FRect *destRect)
 {
-    SDL_RenderTexture(sdl_renderer, sprite->GetSpriteSheet()->GetSDL_Texture(), sprite->GetSrcRect(), destRect);
+    SDL_FRect srcRect = sprite->GetSrcRect();
+    SDL_RenderTexture(sdl_renderer, sprite->GetSpriteSheet()->GetSDL_Texture(), &srcRect, destRect);
 }
 
 void ChRenderer::DrawTriangle()
