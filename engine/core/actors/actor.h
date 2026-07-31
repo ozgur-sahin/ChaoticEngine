@@ -5,14 +5,15 @@
 
 class ChActor
 {
-    ChTransform ActorTransform;
-    ChActorAnimator Animator;
-
-    bool isTickable;
 
 public:
     ChActor(double, double);
     virtual ~ChActor();
 
     virtual void Tick(float);
+
+    ChTransform ActorTransform;
+    ChActorAnimator Animator;
+
+    bool isTickable;
 };

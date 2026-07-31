@@ -25,6 +25,10 @@ void ChEngine::run()
 {
     ChTexture RedSpriteSheet(&renderer, "assets/textures/RedPlayerSpriteSheet.png");
 
+    ChActor RedPlayer{0, 0};
+
+    // RedPlayer.Animator.addAnimation()
+
     SDL_FRect Walk1Rect{0, 0, 92.0 / 3.0, 128.0 / 4.0};
     ChSprite WalkingPlayerSprite(&RedSpriteSheet, Walk1Rect);
 
@@ -33,6 +37,11 @@ void ChEngine::run()
 
     SDL_FRect IdleRect{92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
     ChSprite IdlePlayerSprite(&RedSpriteSheet, IdleRect);
+
+    std::vector<std::tuple<SDL_FRect, double>> frames{{IdleRect, 100}, {Walk1Rect, 100}, {IdleRect, 100}, {Walk2Rect, 100}};
+    ChAnimation WalkingAnimation{&RedSpriteSheet, frames, true};
+    RedPlayer.Animator.addAnimation("Walk", &WalkingAnimation);
+    RedPlayer.Animator.Play("Walk");
 
     bool running = true;
 
@@ -57,24 +66,24 @@ void ChEngine::run()
         // renderer->DrawTriangle();
         // renderer->DrawCircle(100);
 
-        switch ((framecount / 100) % 4)
-        {
-        case (0):
-            renderer.DrawRectTexture(&IdlePlayerSprite, &destrect);
-            break;
+        // switch ((framecount / 100) % 4)
+        // {
+        // case (0):
+        //     renderer.DrawRectTexture(&IdlePlayerSprite, &destrect);
+        //     break;
 
-        case (1):
-            renderer.DrawRectTexture(&WalkingPlayerSprite, &destrect);
-            break;
+        // case (1):
+        //     renderer.DrawRectTexture(&WalkingPlayerSprite, &destrect);
+        //     break;
 
-        case (2):
-            renderer.DrawRectTexture(&IdlePlayerSprite, &destrect);
-            break;
+        // case (2):
+        //     renderer.DrawRectTexture(&IdlePlayerSprite, &destrect);
+        //     break;
 
-        case (3):
-            renderer.DrawRectTexture(&WalkingPlayerSprite2, &destrect);
-            break;
-        }
+        // case (3):
+        //     renderer.DrawRectTexture(&WalkingPlayerSprite2, &destrect);
+        //     break;
+        // }
         clock.Update();
         clock.EnforceFrameLimit(targetFrametime);
         ShowFPSCounter();
