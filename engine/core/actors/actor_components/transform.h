@@ -8,6 +8,8 @@ class ChTransform
 {
     double XPosition;
     double YPosition;
+    double XVelocity;
+    double YVelocity;
     double ActorSizeX;
     double ActorSizeY;
 

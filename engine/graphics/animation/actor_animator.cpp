@@ -53,7 +53,7 @@ SDL_FRect ChActorAnimator::FindCurrentAnimationFrame()
     auto frames = currentAnimation->frames;
     auto frametimetable = currentAnimation->frameTimeTable;
 
-    Logger::Info("Animation runtime: " + std::to_string(AnimationRunTime) + "\n");
+    // Logger::Info("Animation runtime: " + std::to_string(AnimationRunTime) + "\n");
 
     for (size_t i = 0; i < frames.size(); i++)
     {
