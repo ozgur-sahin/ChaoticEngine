@@ -15,9 +15,12 @@ class ChTransform
 
 public:
     ChTransform(double x = 0, double y = 0, double sizex = 50, double sizey = 50);
+    void Update(float);
     std::array<double, 2> GetPosition() const;
+    std::array<double, 2> GetVelocity() const;
     std::array<double, 2> GetActorSize() const;
     void TranslatePosition(double, double);
     void SetPosition(double, double);
+    void SetVelocity(double, double);
     SDL_FRect FindDestRectFromTransform() const;
 };

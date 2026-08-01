@@ -3,7 +3,9 @@
 ChEngine::ChEngine(const int WindowHeight, const int WindowWidth, const int FPS)
     : window(WindowHeight, WindowWidth),
       renderer(&window),
-      clock()
+      clock(),
+      targetFPS{FPS},
+      targetFrametime{1000.0 / targetFPS}
 {
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
@@ -12,8 +14,6 @@ ChEngine::ChEngine(const int WindowHeight, const int WindowWidth, const int FPS)
     }
 
     Logger::Info("Engine initialized...");
-    targetFPS = FPS;
-    targetFrametime = 1000.0 / targetFPS; // defined in milliseconds
 }
 
 ChEngine::~ChEngine()
@@ -27,16 +27,9 @@ void ChEngine::run()
 
     ChActor RedPlayer{500, 500, 100, 100};
 
-    // RedPlayer.Animator.addAnimation()
-
     SDL_FRect Walk1Rect{0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    // ChSprite WalkingPlayerSprite(&RedSpriteSheet, Walk1Rect);
-
     SDL_FRect Walk2Rect{2.0 * 92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    // ChSprite WalkingPlayerSprite2(&RedSpriteSheet, Walk2Rect);
-
     SDL_FRect IdleRect{92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    // ChSprite IdlePlayerSprite(&RedSpriteSheet, IdleRect);
 
     std::vector<std::tuple<SDL_FRect, double>> idleframe{{IdleRect, 0}};
     std::vector<std::tuple<SDL_FRect, double>> walkingframes{{IdleRect, 500}, {Walk1Rect, 250}, {IdleRect, 500}, {Walk2Rect, 250}};

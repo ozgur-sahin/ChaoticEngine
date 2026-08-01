@@ -22,7 +22,7 @@ struct ChAnimation
                                                                                                       looping{loop}
 
     {
-        double timecounter = 0;
+        double timecounter{0};
         for (auto frame : frames)
         {
             timecounter += std::get<double>(frame);

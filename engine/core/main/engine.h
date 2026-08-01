@@ -23,8 +23,8 @@ class ChEngine
 
     ChClock clock;
 
-    int targetFPS;
-    double targetFrametime;
+    const int targetFPS;
+    const double targetFrametime; // in ms
 
 public:
     ChEngine(const int, const int, const int);

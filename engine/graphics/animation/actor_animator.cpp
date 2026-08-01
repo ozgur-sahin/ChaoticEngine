@@ -55,7 +55,7 @@ SDL_FRect ChActorAnimator::FindCurrentAnimationFrame()
 
     // Logger::Info("Animation runtime: " + std::to_string(AnimationRunTime) + "\n");
 
-    for (size_t i = 0; i < frames.size(); i++)
+    for (size_t i = 0; i < frames.size(); i++) // implement binary search here if animation frames is expected to explode in the future
     {
         if (AnimationRunTime <= frametimetable.at(i))
         {
