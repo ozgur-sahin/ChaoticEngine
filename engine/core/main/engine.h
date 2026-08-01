@@ -12,6 +12,7 @@
 #include <core/time/game_clock.h>
 #include <filesystem>
 #include <core/actors/actor.h>
+#include "../src/player_character.h"
 #include <graphics/animation/actor_animator.h>
 #include <graphics/animation/animation.h>
 

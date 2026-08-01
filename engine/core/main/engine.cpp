@@ -25,7 +25,7 @@ void ChEngine::run()
 {
     ChTexture RedSpriteSheet(&renderer, "assets/textures/RedPlayerSpriteSheet.png");
 
-    ChActor RedPlayer{500, 500, 100, 100};
+    PlayerCharacter RedPlayer{500, 500, 100, 100};
 
     SDL_FRect Walk1Rect{0, 0, 92.0 / 3.0, 128.0 / 4.0};
     SDL_FRect Walk2Rect{2.0 * 92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
