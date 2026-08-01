@@ -1,6 +1,8 @@
 #include "actor.h"
 
-ChActor::ChActor(double x, double y) : ActorTransform{x, y}
+#include <sstream>
+
+ChActor::ChActor(double x, double y, double sizex, double sizey) : ActorTransform{x, y, sizex, sizey}
 {
 }
 
@@ -8,6 +10,20 @@ ChActor::~ChActor()
 {
 }
 
-void ChActor::Tick(float DeltaTime)
+void ChActor::Tick(float DeltaTime, ChRenderer *renderer)
 {
+    ActorLifetime += DeltaTime; // in ms
+
+    // Logger::Info("Actor " + GetActorAddressAsString() + " lifetime: " + std::to_string(ActorLifetime));
+
+    SDL_FRect destrect = ActorTransform.FindDestRectFromTransform();
+
+    Animator.AnimationUpdate(DeltaTime, destrect, renderer);
+}
+
+std::string ChActor::GetActorAddressAsString() const
+{
+    std::ostringstream oss;
+    oss << this;
+    return oss.str();
 }

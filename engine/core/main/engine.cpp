@@ -25,7 +25,7 @@ void ChEngine::run()
 {
     ChTexture RedSpriteSheet(&renderer, "assets/textures/RedPlayerSpriteSheet.png");
 
-    ChActor RedPlayer{0, 0};
+    ChActor RedPlayer{500, 500, 100, 100};
 
     // RedPlayer.Animator.addAnimation()
 
@@ -38,9 +38,12 @@ void ChEngine::run()
     SDL_FRect IdleRect{92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
     // ChSprite IdlePlayerSprite(&RedSpriteSheet, IdleRect);
 
-    std::vector<std::tuple<SDL_FRect, double>> frames{{IdleRect, 100}, {Walk1Rect, 100}, {IdleRect, 100}, {Walk2Rect, 100}};
-    ChAnimation WalkingAnimation{&RedSpriteSheet, frames, true};
+    std::vector<std::tuple<SDL_FRect, double>> idleframe{{IdleRect, 0}};
+    std::vector<std::tuple<SDL_FRect, double>> walkingframes{{IdleRect, 500}, {Walk1Rect, 250}, {IdleRect, 500}, {Walk2Rect, 250}};
+    ChAnimation WalkingAnimation{&RedSpriteSheet, walkingframes, true};
+    ChAnimation IdleAnimation(&RedSpriteSheet, idleframe);
     RedPlayer.Animator.addAnimation("Walk", &WalkingAnimation);
+    RedPlayer.Animator.addAnimation("Idle", &IdleAnimation);
     RedPlayer.Animator.Play("Walk");
 
     bool running = true;
@@ -58,12 +61,14 @@ void ChEngine::run()
             }
         }
         renderer.FrameClear();
-        clock.Update();
-        clock.EnforceFrameLimit(targetFrametime);
+
+        RedPlayer.Tick(clock.GetDeltaTime(), &renderer);
         ShowFPSCounter();
 
         renderer.RenderFrame();
 
+        clock.Update();
+        clock.EnforceFrameLimit(targetFrametime);
 
         // Logger::Info("Frametime = " + std::to_string(clock.GetDeltaTime()) + "ms");
         // Logger::Info("FPS: " + std::to_string(1000.0 / clock.GetDeltaTime()));

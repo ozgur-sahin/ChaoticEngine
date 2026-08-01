@@ -1,12 +1,17 @@
 #include "transform.h"
 
-ChTransform::ChTransform(double x, double y) : XPosition{x}, YPosition{y}
+ChTransform::ChTransform(double x, double y, double sizex, double sizey) : XPosition{x}, YPosition{y}, ActorSizeX{sizex}, ActorSizeY{sizey}
 {
 }
 
-std::pair<double, double> ChTransform::GetPosition() const
+std::array<double, 2> ChTransform::GetPosition() const
 {
-    return std::pair<double, double>{XPosition, YPosition};
+    return std::array<double, 2>{XPosition, YPosition};
+}
+
+std::array<double, 2> ChTransform::GetActorSize() const
+{
+    return std::array<double, 2>{XPosition, YPosition};
 }
 
 void ChTransform::TranslatePosition(double deltax, double deltay)
@@ -19,4 +24,12 @@ void ChTransform::SetPosition(double x, double y)
 {
     XPosition = x;
     YPosition = y;
+}
+
+SDL_FRect ChTransform::FindDestRectFromTransform() const
+{
+    return SDL_FRect{static_cast<float>(XPosition - ActorSizeX / 2),
+                     static_cast<float>(YPosition - ActorSizeY / 2),
+                     static_cast<float>(ActorSizeX),
+                     static_cast<float>(ActorSizeY)};
 }
