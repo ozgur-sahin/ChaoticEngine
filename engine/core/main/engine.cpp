@@ -30,13 +30,13 @@ void ChEngine::run()
     // RedPlayer.Animator.addAnimation()
 
     SDL_FRect Walk1Rect{0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    ChSprite WalkingPlayerSprite(&RedSpriteSheet, Walk1Rect);
+    // ChSprite WalkingPlayerSprite(&RedSpriteSheet, Walk1Rect);
 
     SDL_FRect Walk2Rect{2.0 * 92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    ChSprite WalkingPlayerSprite2(&RedSpriteSheet, Walk2Rect);
+    // ChSprite WalkingPlayerSprite2(&RedSpriteSheet, Walk2Rect);
 
     SDL_FRect IdleRect{92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    ChSprite IdlePlayerSprite(&RedSpriteSheet, IdleRect);
+    // ChSprite IdlePlayerSprite(&RedSpriteSheet, IdleRect);
 
     std::vector<std::tuple<SDL_FRect, double>> frames{{IdleRect, 100}, {Walk1Rect, 100}, {IdleRect, 100}, {Walk2Rect, 100}};
     ChAnimation WalkingAnimation{&RedSpriteSheet, frames, true};
@@ -44,10 +44,6 @@ void ChEngine::run()
     RedPlayer.Animator.Play("Walk");
 
     bool running = true;
-
-    SDL_FRect destrect{400 - 75, 300 - 75, 150, 150};
-
-    int framecount = 0;
 
     while (running)
     {
@@ -62,38 +58,15 @@ void ChEngine::run()
             }
         }
         renderer.FrameClear();
-        // renderer->DrawRectangle(100, 100, 50, 50, 255, 0, 0, 255);
-        // renderer->DrawTriangle();
-        // renderer->DrawCircle(100);
-
-        // switch ((framecount / 100) % 4)
-        // {
-        // case (0):
-        //     renderer.DrawRectTexture(&IdlePlayerSprite, &destrect);
-        //     break;
-
-        // case (1):
-        //     renderer.DrawRectTexture(&WalkingPlayerSprite, &destrect);
-        //     break;
-
-        // case (2):
-        //     renderer.DrawRectTexture(&IdlePlayerSprite, &destrect);
-        //     break;
-
-        // case (3):
-        //     renderer.DrawRectTexture(&WalkingPlayerSprite2, &destrect);
-        //     break;
-        // }
         clock.Update();
         clock.EnforceFrameLimit(targetFrametime);
         ShowFPSCounter();
 
         renderer.RenderFrame();
 
-        Logger::Info("Frametime = " + std::to_string(clock.GetDeltaTime()) + "ms");
-        Logger::Info("FPS: " + std::to_string(1000.0 / clock.GetDeltaTime()));
 
-        framecount++;
+        // Logger::Info("Frametime = " + std::to_string(clock.GetDeltaTime()) + "ms");
+        // Logger::Info("FPS: " + std::to_string(1000.0 / clock.GetDeltaTime()));
     }
 }
 

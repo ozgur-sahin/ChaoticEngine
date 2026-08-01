@@ -29,7 +29,7 @@ void ChClock::EnforceFrameLimit(double targetFrametime)
     if (deltaTime < DurationTargetFrameTime)
     {
         auto SleepDuration = DurationTargetFrameTime - deltaTime;
-        Logger::Info("Sleeping for " + std::to_string(SleepDuration.count()) + " ms");
+        // Logger::Info("Sleeping for " + std::to_string(SleepDuration.count()) + " ms");
         std::this_thread::sleep_for(SleepDuration);
     }
 }
