@@ -47,10 +47,23 @@ void ChEngine::run()
 
         while (SDL_PollEvent(&event))
         {
-            if (event.type == SDL_EVENT_QUIT)
+            switch (event.type)
             {
+            case SDL_EVENT_QUIT:
                 running = false;
-                // Logger::Info("Window no longer running...");
+                break;
+
+            case SDL_EVENT_KEY_DOWN:
+                Logger::Info("A key was pressed down");
+                switch (event.key.key)
+                {
+                case SDLK_S:
+                    Logger::Info("Down key pressed!");
+                    break;
+                default:
+                    Logger::Info("Couldn't find which key was pressed.");
+                }
+                break;
             }
         }
         renderer.FrameClear();
