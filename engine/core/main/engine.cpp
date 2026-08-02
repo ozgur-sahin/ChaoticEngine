@@ -25,7 +25,10 @@ ChEngine::~ChEngine()
 void ChEngine::run()
 {
     scene.AddTexture("PLAYER", "assets/textures/RedPlayerSpriteSheet.png");
+    scene.AddTexture("BLUE", "assets/textures/BlueRivalSpriteSheet.png");
+
     scene.AddActor<PlayerCharacter>(300, 400);
+    scene.AddActor<Blue_character>(200, 300);
     Logger::Info("Successfully added player character!");
     bool running = true;
 

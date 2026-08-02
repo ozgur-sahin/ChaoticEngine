@@ -15,6 +15,7 @@
 #include <core/actors/actor.h>
 #include <core/main/scene.h>
 #include "../src/player_character.h"
+#include "../src/Blue_character.h"
 #include <graphics/animation/actor_animator.h>
 #include <graphics/animation/animation.h>
 

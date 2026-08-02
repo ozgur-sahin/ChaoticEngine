@@ -7,6 +7,7 @@ PlayerCharacter::PlayerCharacter()
 void PlayerCharacter::Tick(float DeltaTime, ChRenderer *renderer)
 {
     ChActor::Tick(DeltaTime, renderer);
+    Logger::Info("Red actor ticked.");
 }
 
 void PlayerCharacter::ConfigureAnimations(ChTexture *spritesheet)
@@ -21,7 +22,7 @@ void PlayerCharacter::ConfigureAnimations(ChTexture *spritesheet)
     ChAnimation IdleAnimation(spritesheet, idleframe);
     Animator.addAnimation("Walk", WalkingAnimation);
     Animator.addAnimation("Idle", IdleAnimation);
-    Animator.Play("Walk");
+    // Animator.Play("Walk");
 
     Logger::Info("Player character animations configured");
 }

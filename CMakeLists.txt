@@ -16,6 +16,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/$<CONFIGURATION>")
 set(SOURCE_FILES 
     src/main.cpp
     src/player_character.cpp
+    src/Blue_character.cpp
     engine/core/logger/logger.cpp
     engine/graphics/renderer/renderer.cpp
     engine/graphics/texture/Texture.cpp
@@ -37,8 +38,6 @@ add_subdirectory(vendored/SDL_image EXCLUDE_FROM_ALL)
 # Create your game executable target as usual
 add_executable(ChaoticEngine 
                 ${SOURCE_FILES}
-                engine/core/main/scene.h
-                engine/core/main/scene.cpp
 )
 
 target_include_directories(ChaoticEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/engine)
