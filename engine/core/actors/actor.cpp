@@ -2,7 +2,7 @@
 
 #include <sstream>
 
-ChActor::ChActor(double x, double y, double sizex, double sizey) : ActorTransform{x, y, sizex, sizey}
+ChActor::ChActor()
 {
     ActorTransform.SetVelocity(0.005, 0);
 }

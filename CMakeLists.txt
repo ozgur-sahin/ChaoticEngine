@@ -26,7 +26,7 @@ set(SOURCE_FILES
     engine/core/actors/actor_components/transform.cpp
     engine/core/actors/actor.cpp
     engine/graphics/animation/actor_animator.cpp
-    
+    engine/core/main/scene.cpp
     )
 
 # This assumes the SDL source is available in vendored/SDL
@@ -37,6 +37,8 @@ add_subdirectory(vendored/SDL_image EXCLUDE_FROM_ALL)
 # Create your game executable target as usual
 add_executable(ChaoticEngine 
                 ${SOURCE_FILES}
+                engine/core/main/scene.h
+                engine/core/main/scene.cpp
 )
 
 target_include_directories(ChaoticEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/engine)

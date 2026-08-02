@@ -13,6 +13,7 @@
 #include <core/time/game_clock.h>
 #include <filesystem>
 #include <core/actors/actor.h>
+#include <core/main/scene.h>
 #include "../src/player_character.h"
 #include <graphics/animation/actor_animator.h>
 #include <graphics/animation/animation.h>
@@ -21,7 +22,7 @@ class ChEngine
 {
     ChWindow window;
 
-    ChRenderer renderer;
+    ChScene scene;
 
     ChClock clock;
 

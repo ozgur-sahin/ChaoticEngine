@@ -9,13 +9,15 @@
 class ChActor
 {
     double ActorLifetime{0};
+    std::string TextureCode{}; // identifier for the texture for actors
 
 public:
-    ChActor(double, double, double, double);
+        ChActor();
     virtual ~ChActor();
 
     virtual void Tick(float, ChRenderer *);
-    virtual void ConfigureAnimations() {};
+    virtual void ConfigureAnimations(ChTexture *) {};
+    virtual std::string GetTextureCode() = 0;
 
     std::string GetActorAddressAsString() const;
 

@@ -2,7 +2,7 @@
 
 ChEngine::ChEngine(const int WindowHeight, const int WindowWidth, const int FPS)
     : window(WindowHeight, WindowWidth),
-      renderer(&window),
+      scene{&window},
       clock(),
       targetFPS{FPS},
       targetFrametime{1000.0 / targetFPS}
@@ -23,26 +23,14 @@ ChEngine::~ChEngine()
 
 void ChEngine::run()
 {
-    ChTexture RedSpriteSheet(&renderer, "assets/textures/RedPlayerSpriteSheet.png");
-
-    PlayerCharacter RedPlayer{500, 500, 100, 100};
-
-    SDL_FRect Walk1Rect{0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    SDL_FRect Walk2Rect{2.0 * 92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
-    SDL_FRect IdleRect{92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
-
-    std::vector<std::tuple<SDL_FRect, double>> idleframe{{IdleRect, 0}};
-    std::vector<std::tuple<SDL_FRect, double>> walkingframes{{IdleRect, 500}, {Walk1Rect, 250}, {IdleRect, 500}, {Walk2Rect, 250}};
-    ChAnimation WalkingAnimation{&RedSpriteSheet, walkingframes, true};
-    ChAnimation IdleAnimation(&RedSpriteSheet, idleframe);
-    RedPlayer.Animator.addAnimation("Walk", &WalkingAnimation);
-    RedPlayer.Animator.addAnimation("Idle", &IdleAnimation);
-    RedPlayer.Animator.Play("Walk");
-
+    scene.AddTexture("PLAYER", "assets/textures/RedPlayerSpriteSheet.png");
+    scene.AddActor<PlayerCharacter>(300, 400);
+    Logger::Info("Successfully added player character!");
     bool running = true;
 
     while (running)
     {
+        Logger::Info("Event loop started");
         SDL_Event event;
 
         while (SDL_PollEvent(&event))
@@ -66,12 +54,9 @@ void ChEngine::run()
                 break;
             }
         }
-        renderer.FrameClear();
-
-        RedPlayer.Tick(clock.GetDeltaTime(), &renderer);
-        ShowFPSCounter();
-
-        renderer.RenderFrame();
+        Logger::Info("About to start rendering this frame.");
+        scene.Render(clock.GetDeltaTime());
+        Logger::Info("Finished rendering the frame.");
 
         clock.Update();
         clock.EnforceFrameLimit(targetFrametime);
@@ -83,6 +68,6 @@ void ChEngine::run()
 
 void ChEngine::ShowFPSCounter()
 {
-    double FPS = 1000.0 / clock.GetDeltaTime();
-    renderer.RenderDebugText(std::format("{:.2f} FPS", FPS));
+    // double FPS = 1000.0 / clock.GetDeltaTime();
+    // renderer.RenderDebugText(std::format("{:.2f} FPS", FPS));
 }
