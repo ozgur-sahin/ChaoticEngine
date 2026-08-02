@@ -1,8 +1,9 @@
 #include <core/main/engine.h>
 
 ChEngine::ChEngine(const int WindowHeight, const int WindowWidth, const int FPS)
-    : window(WindowHeight, WindowWidth),
-      scene{&window},
+    : window{WindowHeight, WindowWidth},
+      renderer{&window},
+      scene{&renderer},
       clock(),
       targetFPS{FPS},
       targetFrametime{1000.0 / targetFPS}
@@ -47,6 +48,7 @@ void ChEngine::run()
                 {
                 case SDLK_S:
                     Logger::Info("Down key pressed!");
+                    scene.AddActor<PlayerCharacter>(200, 200);
                     break;
                 default:
                     Logger::Info("Couldn't find which key was pressed.");
@@ -54,9 +56,13 @@ void ChEngine::run()
                 break;
             }
         }
-        Logger::Info("About to start rendering this frame.");
+        renderer.FrameClear();
+
         scene.Render(clock.GetDeltaTime());
-        Logger::Info("Finished rendering the frame.");
+
+        ShowFPSCounter();
+
+        renderer.RenderFrame();
 
         clock.Update();
         clock.EnforceFrameLimit(targetFrametime);
@@ -68,6 +74,6 @@ void ChEngine::run()
 
 void ChEngine::ShowFPSCounter()
 {
-    // double FPS = 1000.0 / clock.GetDeltaTime();
-    // renderer.RenderDebugText(std::format("{:.2f} FPS", FPS));
+    double FPS = 1000.0 / clock.GetDeltaTime();
+    renderer.RenderDebugText(std::format("{:.2f} FPS", FPS));
 }

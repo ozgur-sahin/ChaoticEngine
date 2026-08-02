@@ -22,6 +22,8 @@ class ChEngine
 {
     ChWindow window;
 
+    ChRenderer renderer;
+
     ChScene scene;
 
     ChClock clock;

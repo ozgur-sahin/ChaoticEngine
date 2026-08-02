@@ -13,12 +13,12 @@ class ChScene
 {
 
     std::vector<std::unique_ptr<ChActor>> actors{};
-    ChRenderer renderer;
+    ChRenderer *renderer;
 
     std::unordered_map<std::string, std::unique_ptr<ChTexture>> textures{};
 
 public:
-    ChScene(ChWindow *);
+    ChScene(ChRenderer *);
 
     virtual void TickActors(float);
 
