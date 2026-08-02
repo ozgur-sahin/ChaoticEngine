@@ -50,8 +50,10 @@ void ChEngine::run()
                 switch (event.key.key)
                 {
                 case SDLK_S:
-                    Logger::Info("Down key pressed!");
                     scene.AddActor<PlayerCharacter>(200, 200);
+                    break;
+                case SDLK_W:
+                    scene.AddActor<Blue_character>(200, 100);
                     break;
                 default:
                     Logger::Info("Couldn't find which key was pressed.");
