@@ -9,10 +9,10 @@
 class ChActor
 {
     double ActorLifetime{0};
-    std::string TextureCode{}; // identifier for the texture for actors
+    std::string texture_code{}; // identifier for the texture for actors
 
 public:
-        ChActor();
+    ChActor();
     virtual ~ChActor();
 
     virtual void Tick(float, ChRenderer *);
