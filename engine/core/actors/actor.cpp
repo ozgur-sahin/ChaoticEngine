@@ -4,7 +4,6 @@
 
 ChActor::ChActor()
 {
-    ActorTransform.SetVelocity(0.005, 0);
 }
 
 ChActor::~ChActor()

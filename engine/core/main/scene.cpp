@@ -29,18 +29,13 @@ ChTexture *ChScene::FindTexture(std::string texture_code)
     }
     else
     {
-        Logger::Info("Eep no texture");
+        Logger::Info("No texture found.");
     }
     return return_texture;
 }
 
 void ChScene::Render(float DeltaTime)
 {
-
-    Logger::Info("Cleared frame");
-
     TickActors(DeltaTime);
     Logger::Info("Ticked all actors");
-
-    Logger::Info("Finished rendering");
 }

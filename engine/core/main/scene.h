@@ -27,6 +27,7 @@ public:
     {
         std::unique_ptr<ChActor> new_actor{new T{}};
         new_actor->ActorTransform.SetPosition(xpos, ypos);
+        new_actor->ActorTransform.SetVelocity(0.005, 0.005);
         Logger::Info("New actor with texture code: " + new_actor->GetTextureCode() + "\n");
         new_actor->ConfigureAnimations(FindTexture(new_actor->GetTextureCode()));
 

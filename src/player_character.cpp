@@ -22,7 +22,7 @@ void PlayerCharacter::ConfigureAnimations(ChTexture *spritesheet)
     ChAnimation IdleAnimation(spritesheet, idleframe);
     Animator.addAnimation("Walk", WalkingAnimation);
     Animator.addAnimation("Idle", IdleAnimation);
-    // Animator.Play("Walk");
+    Animator.Play("Walk");
 
     Logger::Info("Player character animations configured");
 }
