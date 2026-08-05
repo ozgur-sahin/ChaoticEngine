@@ -15,7 +15,7 @@ public:
     ChActor();
     virtual ~ChActor();
 
-    virtual void Tick(float, ChRenderer *);
+    virtual void Tick(float, ChRenderer &);
     virtual void ConfigureAnimations(ChTexture *) {};
     virtual std::string GetTextureCode() = 0;
 

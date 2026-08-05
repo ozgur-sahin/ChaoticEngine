@@ -1,6 +1,6 @@
 #include "scene.h"
 
-ChScene::ChScene(ChRenderer *renderer_ptr) : renderer{renderer_ptr}
+ChScene::ChScene(ChRenderer &renderer_ref) : renderer{renderer_ref}
 {
 }
 

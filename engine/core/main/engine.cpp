@@ -3,7 +3,7 @@
 ChEngine::ChEngine(const int WindowHeight, const int WindowWidth, const int FPS)
     : window{WindowHeight, WindowWidth},
       renderer{&window},
-      scene{&renderer},
+      scene{renderer},
       clock{},
       targetFPS{FPS},
       targetFrametime{1000.0 / targetFPS}

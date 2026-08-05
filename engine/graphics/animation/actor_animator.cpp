@@ -17,14 +17,14 @@ void ChActorAnimator::Stop()
     currentAnimation = nullptr;
 }
 
-void ChActorAnimator::RenderIdle(SDL_FRect destRect, ChRenderer *renderer)
+void ChActorAnimator::RenderIdle(SDL_FRect destRect, ChRenderer &renderer)
 {
     SDL_FRect srcRect{std::get<SDL_FRect>(Animations.at("Idle").frames[0])};
 
-    renderer->DrawRectTexture(Animations.at("Idle").spritesheet, &destRect, &srcRect);
+    renderer.DrawRectTexture(Animations.at("Idle").spritesheet, &destRect, &srcRect);
 }
 
-void ChActorAnimator::AnimationUpdate(float DeltaTime, SDL_FRect destrect, ChRenderer *renderer)
+void ChActorAnimator::AnimationUpdate(float DeltaTime, SDL_FRect destrect, ChRenderer &renderer)
 {
     if (!currentAnimation)
     {
@@ -44,8 +44,8 @@ void ChActorAnimator::AnimationUpdate(float DeltaTime, SDL_FRect destrect, ChRen
 
     SDL_FRect srcrect = FindCurrentAnimationFrame();
 
-    renderer->DrawRectTexture(currentAnimation->spritesheet,
-                              &destrect, &srcrect);
+    renderer.DrawRectTexture(currentAnimation->spritesheet,
+                             &destrect, &srcrect);
 }
 
 SDL_FRect ChActorAnimator::FindCurrentAnimationFrame()

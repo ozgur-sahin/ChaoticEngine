@@ -15,7 +15,7 @@ class ChTexture
 
 public:
     ChTexture(SDL_Renderer *, const int, const int);
-    ChTexture(ChRenderer *, const std::string);
+    ChTexture(ChRenderer &, const std::string);
     ~ChTexture();
     SDL_Texture *GetSDL_Texture() const;
 };

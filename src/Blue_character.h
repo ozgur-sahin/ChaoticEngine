@@ -9,7 +9,7 @@ class Blue_character : public ChActor
 public:
     Blue_character();
 
-    virtual void Tick(float, ChRenderer *) override;
+    virtual void Tick(float, ChRenderer &) override;
     virtual void ConfigureAnimations(ChTexture *) override;
     virtual std::string GetTextureCode() override
     {

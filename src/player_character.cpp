@@ -4,7 +4,7 @@ PlayerCharacter::PlayerCharacter()
 {
 }
 
-void PlayerCharacter::Tick(float DeltaTime, ChRenderer *renderer)
+void PlayerCharacter::Tick(float DeltaTime, ChRenderer &renderer)
 {
     ChActor::Tick(DeltaTime, renderer);
     Logger::Info("Red actor ticked.");

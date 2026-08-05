@@ -4,7 +4,7 @@ Blue_character::Blue_character()
 {
 }
 
-void Blue_character::Tick(float DeltaTime, ChRenderer *renderer)
+void Blue_character::Tick(float DeltaTime, ChRenderer &renderer)
 {
     ChActor::Tick(DeltaTime, renderer);
     Logger::Info("Blue actor ticked.");
