@@ -1,4 +1,5 @@
 #pragma once
+#define CH_LOG_LEVEL LogLevel::Trace
 
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
