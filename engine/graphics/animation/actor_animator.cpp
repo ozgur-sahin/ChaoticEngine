@@ -1,14 +1,14 @@
 #include <graphics/animation/actor_animator.h>
 #include <graphics/renderer/renderer.h>
 
-void ChActorAnimator::addAnimation(std::string AnimationName, ChAnimation Animation)
-{
-    Animations.insert({AnimationName, Animation});
-}
+// void ChActorAnimator::addAnimation(std::string AnimationName, ChAnimation Animation)
+// {
+//     Animations.insert({AnimationName, Animation});
+// }
 
-void ChActorAnimator::Play(std::string AnimationName)
+void ChActorAnimator::Play(ChAnimation *Animation)
 {
-    currentAnimation = &Animations.at(AnimationName);
+    currentAnimation = Animation;
     AnimationRunTime = 0;
 }
 
@@ -19,14 +19,14 @@ void ChActorAnimator::Stop()
 
 void ChActorAnimator::RenderIdle(SDL_FRect destRect, ChRenderer &renderer)
 {
-    SDL_FRect srcRect{std::get<SDL_FRect>(Animations.at("Idle").frames[0])};
+    SDL_FRect srcRect{std::get<SDL_FRect>(Animations->at("Idle").frames[0])};
 
-    renderer.DrawRectTexture(Animations.at("Idle").spritesheet, &destRect, &srcRect);
+    renderer.DrawRectTexture(Animations->at("Idle").spritesheet, &destRect, &srcRect);
 }
 
 void ChActorAnimator::AnimationUpdate(float DeltaTime, SDL_FRect destrect, ChRenderer &renderer)
 {
-    if (!currentAnimation)
+    if (currentAnimation == nullptr)
     {
         RenderIdle(destrect, renderer);
         return;

@@ -4,15 +4,15 @@
 
 class Blue_character : public ChActor
 {
-    std::string texture_code{"BLUE"};
+    std::string class_code{"BLUE"};
 
 public:
     Blue_character();
 
     virtual void Tick(float, ChRenderer &) override;
-    virtual void ConfigureAnimations(ChTexture *) override;
-    virtual std::string GetTextureCode() override
+    virtual void ConfigureAnimations(ChTexture *, ChScene *) override;
+    virtual const std::string GetClassCode() const override
     {
-        return texture_code;
+        return class_code;
     }
 };

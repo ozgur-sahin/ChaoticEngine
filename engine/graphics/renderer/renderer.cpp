@@ -38,11 +38,11 @@ void ChRenderer::DrawRectTexture(ChTexture *texture, SDL_FRect *destRect, SDL_FR
     SDL_RenderTexture(sdl_renderer, texture->GetSDL_Texture(), srcRect, destRect);
 }
 
-void ChRenderer::DrawRectTexture(ChSprite *sprite, SDL_FRect *destRect)
-{
-    SDL_FRect srcRect = sprite->GetSrcRect();
-    SDL_RenderTexture(sdl_renderer, sprite->GetSpriteSheet()->GetSDL_Texture(), &srcRect, destRect);
-}
+// void ChRenderer::DrawRectTexture(ChSprite *sprite, SDL_FRect *destRect)
+// {
+//     SDL_FRect srcRect = sprite->GetSrcRect();
+//     SDL_RenderTexture(sdl_renderer, sprite->GetSpriteSheet()->GetSDL_Texture(), &srcRect, destRect);
+// }
 
 void ChRenderer::DrawTriangle()
 {

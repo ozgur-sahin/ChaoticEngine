@@ -5,19 +5,23 @@
 #include <core/actors/actor_components/transform.h>
 #include <graphics/animation/actor_animator.h>
 #include <graphics/renderer/renderer.h>
+// #include <core/main/scene.h>
+
+class ChScene;
 
 class ChActor
 {
     double ActorLifetime{0};
-    std::string texture_code{}; // identifier for the texture for actors
+    std::string class_code{}; // identifier for the texture for actors
 
 public:
     ChActor();
     virtual ~ChActor();
 
     virtual void Tick(float, ChRenderer &);
-    virtual void ConfigureAnimations(ChTexture *) {};
-    virtual std::string GetTextureCode() = 0;
+    virtual void ConfigureAnimations(ChTexture *, ChScene *) {};
+    virtual std::string GetTextureCode() { return ""; };
+    virtual const std::string GetClassCode() const = 0;
 
     std::string GetActorAddressAsString() const;
 

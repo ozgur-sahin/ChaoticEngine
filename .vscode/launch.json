@@ -6,13 +6,13 @@
     "configurations": [
         {
     "name": "Debug ChaoticEngine",
-    "type": "cppdbg",
+    "type": "lldb",
     "request": "launch",
     "program": "${command:cmake.launchTargetPath}",
     "cwd": "${workspaceFolder}/build",
     "args": [],
-    "stopAtEntry": true,
-    "MIMode": "lldb"
+    // "stopAtEntry": false,
+    // "MIMode": "lldb"
 }
     ]
 }
