@@ -21,21 +21,12 @@ void ChScene::Render(float DeltaTime)
 
 void ChScene::AddTexture(std::string texture_code, std::string filename)
 {
-    textures.try_emplace(texture_code, ChTexture{renderer, filename});
+    textures.try_emplace(texture_code, renderer, filename);
 }
 
 ChTexture *ChScene::FindTexture(std::string texture_code)
 {
     ChTexture *return_texture{&textures.at(texture_code)};
-
-    if (return_texture)
-    {
-        Logger::Info("Texture for " + texture_code + " found!");
-    }
-    else
-    {
-        Logger::Info("No texture found.");
-    }
     return return_texture;
 }
 

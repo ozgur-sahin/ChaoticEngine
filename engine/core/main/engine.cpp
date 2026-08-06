@@ -62,10 +62,6 @@ void ChEngine::run()
             }
         }
         renderer.FrameClear();
-        SDL_FRect IdleRect{92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
-        SDL_FRect destrect = {0, 0, 100, 100};
-        renderer.DrawRectTexture(scene.FindTexture("PLAYER"), &destrect, &IdleRect);
-        renderer.DrawCircle(10);
 
         scene.Render(clock.GetDeltaTime());
 

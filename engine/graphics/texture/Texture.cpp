@@ -30,6 +30,23 @@ ChTexture::~ChTexture()
     SDL_DestroyTexture(sdl_texture);
 }
 
+ChTexture::ChTexture(ChTexture &&old_texture) noexcept
+{
+    sdl_texture = old_texture.sdl_texture;
+    old_texture.sdl_texture = nullptr;
+}
+
+ChTexture &ChTexture::operator=(ChTexture &&old_texture) noexcept
+{
+    if (this != &old_texture)
+    {
+        SDL_DestroyTexture(sdl_texture);
+        sdl_texture = old_texture.sdl_texture;
+        old_texture.sdl_texture = nullptr;
+    }
+    return *this;
+}
+
 SDL_Texture *ChTexture::GetSDL_Texture() const
 {
     return sdl_texture;

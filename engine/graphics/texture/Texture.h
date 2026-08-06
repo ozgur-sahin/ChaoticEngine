@@ -9,13 +9,17 @@ class ChRenderer;
 
 class ChTexture
 {
-    SDL_Texture *sdl_texture;
+    SDL_Texture *sdl_texture{};
     int h;
     int w;
 
 public:
     ChTexture(SDL_Renderer *, const int, const int);
     ChTexture(ChRenderer &, const std::string);
+    ChTexture(const ChTexture &) = delete;
+    ChTexture(ChTexture &&) noexcept;
+    ChTexture &operator=(const ChTexture &) = delete;
+    ChTexture &operator=(ChTexture &&) noexcept;
     ~ChTexture();
     SDL_Texture *GetSDL_Texture() const;
 };

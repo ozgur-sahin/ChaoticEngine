@@ -20,6 +20,10 @@ class ChRenderer
 public:
     ChRenderer(ChWindow *);
     ~ChRenderer();
+    ChRenderer(const ChRenderer &) = delete;
+    ChRenderer &operator=(const ChRenderer &) = delete;
+    ChRenderer(ChRenderer &&) = delete;
+    ChRenderer &operator=(ChRenderer &&) = delete;
     void DrawRectangle(float, float, float, float, int, int, int, int);
     void RenderFrame();
     void FrameClear();
