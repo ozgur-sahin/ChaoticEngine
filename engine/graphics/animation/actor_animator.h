@@ -18,7 +18,7 @@ public:
 
     ChActorAnimator() {};
     // void addAnimation(std::string, ChAnimation);
-    void Play(ChAnimation *);
+    void Play(std::string);
     void Stop();
     void RenderIdle(SDL_FRect, ChRenderer &);
     void AnimationUpdate(float, SDL_FRect, ChRenderer &);

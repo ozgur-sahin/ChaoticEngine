@@ -18,12 +18,15 @@
 #include "../src/Blue_character.h"
 #include <graphics/animation/actor_animator.h>
 #include <graphics/animation/animation.h>
+#include <core/main/asset_manager.h>
 
 class ChEngine
 {
     ChWindow window;
 
     ChRenderer renderer;
+
+    ChAssetManager asset_manager;
 
     ChScene scene;
 

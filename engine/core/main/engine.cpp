@@ -3,7 +3,8 @@
 ChEngine::ChEngine(const int WindowHeight, const int WindowWidth, const int FPS)
     : window{WindowHeight, WindowWidth},
       renderer{&window},
-      scene{renderer},
+      asset_manager{renderer},
+      scene{renderer, asset_manager},
       clock{},
       targetFPS{FPS},
       targetFrametime{1000.0 / targetFPS}
@@ -24,8 +25,8 @@ ChEngine::~ChEngine()
 
 void ChEngine::run()
 {
-    scene.AddTexture("PLAYER", "assets/textures/RedPlayerSpriteSheet.png");
-    scene.AddTexture("BLUE", "assets/textures/BlueRivalSpriteSheet.png");
+    asset_manager.AddTexture("PLAYER", "assets/textures/RedPlayerSpriteSheet.png");
+    asset_manager.AddTexture("BLUE", "assets/textures/BlueRivalSpriteSheet.png");
 
     scene.AddActor<PlayerCharacter>(300, 400);
     scene.AddActor<Blue_character>(200, 300);

@@ -6,8 +6,13 @@
 //     Animations.insert({AnimationName, Animation});
 // }
 
-void ChActorAnimator::Play(ChAnimation *Animation)
+void ChActorAnimator::Play(std::string AnimationName)
 {
+    ChAnimation *Animation = &Animations->at(AnimationName);
+    if (!Animation)
+    {
+        Logger::Info("Bohoo");
+    }
     currentAnimation = Animation;
     AnimationRunTime = 0;
 }

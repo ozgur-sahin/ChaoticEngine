@@ -11,12 +11,13 @@ void Blue_character::Tick(float DeltaTime, ChRenderer &renderer)
     Logger::Info("Blue actor ticked.");
 }
 
-void Blue_character::ConfigureAnimations(ChTexture *spritesheet, ChScene *owning_scene)
+void Blue_character::ConfigureAnimations(ChTexture *spritesheet, ChAssetManager &asset_manager)
 {
     SDL_FRect IdleRect{92.0 / 3.0, 0, 92.0 / 3.0, 128.0 / 4.0};
 
     std::vector<std::tuple<SDL_FRect, double>> idleframe{{IdleRect, 0}};
 
     ChAnimation IdleAnimation(spritesheet, idleframe);
-    owning_scene->AddAnimation(class_code, "Idle", IdleAnimation);
+    asset_manager.AddAnimation(class_code, "Idle", IdleAnimation);
+    Animator.Animations = &asset_manager.animations.at(class_code);
 }

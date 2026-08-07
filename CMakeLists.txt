@@ -28,6 +28,7 @@ set(SOURCE_FILES
     engine/core/actors/actor.cpp
     engine/graphics/animation/actor_animator.cpp
     engine/core/main/scene.cpp
+    engine/core/main/asset_manager.cpp
     )
 
 # This assumes the SDL source is available in vendored/SDL

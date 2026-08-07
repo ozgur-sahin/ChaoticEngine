@@ -3,6 +3,7 @@
 #include <core/actors/actor.h>
 #include <graphics/renderer/renderer.h>
 #include <core/window/window.h>
+#include <core/main/asset_manager.h>
 #include <vector>
 #include <memory>
 
@@ -14,12 +15,10 @@ class ChScene
 
     std::vector<std::unique_ptr<ChActor>> actors{};
     ChRenderer &renderer;
-
-    std::unordered_map<std::string, ChTexture> textures{};
-    std::unordered_map<std::string, std::unordered_map<std::string, ChAnimation>> animations{};
+    ChAssetManager &asset_manager;
 
 public:
-    ChScene(ChRenderer &);
+    ChScene(ChRenderer &, ChAssetManager &);
     virtual ~ChScene() {};
 
     virtual void TickActors(float);
@@ -32,17 +31,12 @@ public:
         new_actor->ActorTransform.SetPosition(xpos, ypos);
         new_actor->ActorTransform.SetVelocity(0.005, 0.005);
         Logger::Info("New actor with texture code: " + new_actor->GetClassCode() + "\n");
-        new_actor->ConfigureAnimations(FindTexture(new_actor->GetClassCode()), this);
+        new_actor->ConfigureAnimations(asset_manager.FindTexture(new_actor->GetClassCode()), asset_manager);
+        auto &animations = asset_manager.animations;
         new_actor->Animator.Animations = &animations.at(new_actor->GetClassCode());
 
         actors.push_back(std::move(new_actor));
     }
-
-    void AddTexture(std::string, std::string);
-    ChTexture *FindTexture(std::string);
-
-    void AddAnimation(std::string, std::string, ChAnimation);
-    ChAnimation *FindAnimation(std::string, std::string);
 
     void Render(float);
 };
