@@ -9,7 +9,7 @@ void ChScene::TickActors(float DeltaTime)
 {
     for (auto &actor : actors)
     {
-        Logger::Info("Actor " + actor->GetActorAddressAsString() + " about to tick.");
+        // Logger::Info("Actor " + actor->GetActorAddressAsString() + " about to tick.");
         actor->Tick(DeltaTime, renderer);
     }
 }
@@ -17,5 +17,5 @@ void ChScene::TickActors(float DeltaTime)
 void ChScene::Render(float DeltaTime)
 {
     TickActors(DeltaTime);
-    Logger::Info("Ticked all actors");
+    // Logger::Info("Ticked all actors");
 }

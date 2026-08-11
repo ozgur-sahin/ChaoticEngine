@@ -25,17 +25,19 @@ ChEngine::~ChEngine()
 
 void ChEngine::run()
 {
-    asset_manager.AddTexture("PLAYER", "assets/textures/RedPlayerSpriteSheet.png");
-    asset_manager.AddTexture("BLUE", "assets/textures/BlueRivalSpriteSheet.png");
+
+    asset_manager.AddTexture("PLAYER", "../src/assets/textures/RedPlayerSpriteSheet.png");
+    asset_manager.AddTexture("BLUE", "../src/assets/textures/BlueRivalSpriteSheet.png");
+    asset_manager.LoadAnimationsFromFile("../src/assets/animations/player.anim");
 
     scene.AddActor<PlayerCharacter>(300, 400);
-    scene.AddActor<Blue_character>(200, 300);
-    Logger::Info("Successfully added player character!");
+    // scene.AddActor<Blue_character>(200, 300);
+    // Logger::Info("Successfully added player character!");
     bool running = true;
 
     while (running)
     {
-        Logger::Info("Event loop started");
+        // Logger::Info("Event loop started");
         SDL_Event event;
 
         while (SDL_PollEvent(&event))
@@ -54,7 +56,7 @@ void ChEngine::run()
                     scene.AddActor<PlayerCharacter>(200, 200);
                     break;
                 case SDLK_W:
-                    scene.AddActor<Blue_character>(200, 100);
+                    // scene.AddActor<Blue_character>(200, 100);
                     break;
                 default:
                     Logger::Info("Couldn't find which key was pressed.");

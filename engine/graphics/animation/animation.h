@@ -7,9 +7,11 @@
 
 struct ChAnimation
 {
-    ChTexture *spritesheet; // master spritesheet that contains all of the frames
+    using frametype = std::tuple<SDL_FRect, double>;
 
-    std::vector<std::tuple<SDL_FRect, double>> frames; // frame rectangle and durations in ms
+    ChTexture *spritesheet{}; // master spritesheet that contains all of the frames
+
+    std::vector<frametype> frames{}; // frame rectangle and durations in ms
 
     SDL_FRect currentFrame;
 

@@ -20,7 +20,7 @@ public:
     virtual ~ChActor();
 
     virtual void Tick(float, ChRenderer &);
-    virtual void ConfigureAnimations(ChTexture *, ChAssetManager &) {};
+    virtual void ConfigureAnimations(ChAssetManager &) {};
     virtual std::string GetTextureCode() { return ""; };
     virtual const std::string GetClassCode() const = 0;
     virtual const std::string GetAnimationFile() const = 0;

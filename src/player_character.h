@@ -11,7 +11,7 @@ public:
     PlayerCharacter();
 
     virtual void Tick(float, ChRenderer &) override;
-    virtual void ConfigureAnimations(ChTexture *, ChAssetManager &) override;
+    virtual void ConfigureAnimations(ChAssetManager &) override;
     virtual const std::string GetClassCode() const override
     {
         return class_code;
