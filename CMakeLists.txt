@@ -22,7 +22,6 @@ set(SOURCE_FILES
     engine/graphics/texture/Texture.cpp
     engine/core/window/window.cpp
     engine/core/main/engine.cpp
-    engine/graphics/sprite/sprite.cpp
     engine/core/time/game_clock.cpp
     engine/core/actors/actor_components/transform.cpp
     engine/core/actors/actor.cpp
