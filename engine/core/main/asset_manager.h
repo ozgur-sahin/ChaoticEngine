@@ -5,9 +5,12 @@
 
 #include <graphics/texture/Texture.h>
 #include <graphics/animation/animation.h>
+#include <json.hpp>
+#include <fstream>
 
 class ChAssetManager
 {
+    using json = nlohmann::json;
     using TextureDictionary = std::unordered_map<std::string, ChTexture>;
     using AnimationDictionary = std::unordered_map<std::string, std::unordered_map<std::string, ChAnimation>>;
 
@@ -25,5 +28,5 @@ public:
     void AddAnimation(const std::string, const std::string, const ChAnimation);
     ChAnimation *FindAnimation(const std::string, const std::string);
 
-    void LoadAnimationsFromFile(std::string){};
+    void LoadAnimationsFromFile(const std::string);
 };

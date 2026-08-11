@@ -22,3 +22,36 @@ ChAnimation *ChAssetManager::FindAnimation(const std::string class_code, const s
 {
     return &animations.at(class_code).at(animation_code);
 }
+
+void ChAssetManager::LoadAnimationsFromFile(const std::string filename)
+{
+    std::ifstream file_stream{filename};
+    json animation_list;
+    file_stream >> animation_list;
+
+    for (const auto &animation : animation_list)
+    {
+        std::vector<ChAnimation::frametype> animation_frames{};
+
+        std::string class_code = animation.at("class_code").get<std::string>();
+        std::string animation_code = animation.at("animation_name").get<std::string>();
+        ChTexture *spritesheet = FindTexture(class_code);
+
+        for (const auto &frame : animation.at("frames"))
+        {
+            const auto &rect = frame["frame_rect"];
+
+            float x = rect[0].get<float>();
+            float y = rect[1].get<float>();
+            float w = rect[2].get<float>();
+            float h = rect[3].get<float>();
+
+            SDL_FRect src_rect{x, y, w, h};
+            double frametime = frame.at("frame_time").get<double>();
+            animation_frames.push_back(std::make_tuple(src_rect, frametime));
+        }
+
+        AddAnimation(class_code, animation_code, ChAnimation{spritesheet, animation_frames});
+    }
+    // std::cout << animation_list[0].at("animation_name").dump(4) << std::endl;
+}

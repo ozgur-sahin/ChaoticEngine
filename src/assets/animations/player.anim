@@ -1,0 +1,36 @@
+
+[
+	{
+		"class_code" : "PLAYER",
+		"animation_name" : "Idle",
+		"frames" : [
+			{
+				"frame_rect" : [30.666, 0, 30.666, 32.0],
+				"frame_time" : 0
+			}		
+		]
+	},
+
+	{
+		"class_code" : "PLAYER",
+		"animation_name" : "Walk",
+		"frames" : [
+			{
+				"frame_rect" : [30.666, 0, 30.666, 32.0],
+				"frame_time" : 500
+			},
+			{
+				"frame_rect" : [0, 0, 30.666, 32.0],
+				"frame_time" : 500
+			},
+			{
+				"frame_rect" : [30.666, 0, 30.666, 32.0],
+				"frame_time" : 500
+			},
+			{
+				"frame_rect" : [61.333, 0, 30.666, 32.0],
+				"frame_time" : 500
+			}
+		]
+	}
+]
