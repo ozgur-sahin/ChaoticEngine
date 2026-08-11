@@ -19,11 +19,11 @@ public:
     TextureDictionary textures{};
     AnimationDictionary animations{};
 
-    void AddTexture(std::string, std::string);
-    ChTexture *FindTexture(std::string);
+    void AddTexture(const std::string, const std::string);
+    ChTexture *FindTexture(const std::string);
 
-    void AddAnimation(std::string, std::string, ChAnimation);
-    ChAnimation *FindAnimation(std::string, std::string);
+    void AddAnimation(const std::string, const std::string, const ChAnimation);
+    ChAnimation *FindAnimation(const std::string, const std::string);
 
     void LoadAnimationsFromFile(std::string){};
 };
