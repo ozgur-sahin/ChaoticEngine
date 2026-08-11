@@ -40,7 +40,8 @@ add_executable(ChaoticEngine
                 ${SOURCE_FILES}
 )
 
-target_include_directories(ChaoticEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/engine)
+target_include_directories(ChaoticEngine PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/engine
+${CMAKE_CURRENT_SOURCE_DIR}/vendored/nlohmann)
 
 # Link to the actual SDL3 library.
 target_link_libraries(ChaoticEngine PRIVATE SDL3::SDL3 SDL3_image::SDL3_image)

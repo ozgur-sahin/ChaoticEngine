@@ -6,5 +6,6 @@
     },
     "cmake.debugConfig": {
         "cwd": "${workspaceFolder}"
-    }
+    },
+    "dotnet.defaultSolution": "disable"
 }
