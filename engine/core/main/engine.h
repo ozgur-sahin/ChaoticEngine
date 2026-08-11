@@ -8,7 +8,6 @@
 #include <string>
 #include <graphics/renderer/renderer.h>
 #include <graphics/texture/Texture.h>
-#include <graphics/sprite/sprite.h>
 #include <core/window/window.h>
 #include <core/time/game_clock.h>
 #include <filesystem>

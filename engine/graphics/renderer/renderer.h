@@ -7,8 +7,6 @@
 #include <core/logger/logger.h>
 #include <vector>
 
-class ChSprite;
-
 class ChWindow;
 
 class ChTexture;
@@ -30,7 +28,6 @@ public:
     void DrawTriangle();
     void DrawCircle(int);
     void DrawRectTexture(ChTexture *, SDL_FRect *, SDL_FRect *srcRect = nullptr);
-    // void DrawRectTexture(ChSprite *, SDL_FRect *);
 
     void RenderDebugText(std::string);
 
