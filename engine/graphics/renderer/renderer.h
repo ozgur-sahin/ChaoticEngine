@@ -2,10 +2,12 @@
 
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
+
 #include <cmath>
 #include <numbers>
-#include <core/logger/logger.h>
 #include <vector>
+
+#include <core/logger/logger.h>
 
 class ChWindow;
 

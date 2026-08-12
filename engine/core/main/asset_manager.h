@@ -3,10 +3,12 @@
 #include <string>
 #include <unordered_map>
 
-#include <graphics/texture/Texture.h>
-#include <graphics/animation/animation.h>
 #include <json.hpp>
 #include <fstream>
+
+class ChTexture;
+struct ChAnimation;
+class ChRenderer;
 
 class ChAssetManager
 {

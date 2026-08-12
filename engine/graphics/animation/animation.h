@@ -1,9 +1,10 @@
 #pragma once
 
-#include <graphics/texture/Texture.h>
 #include <vector>
 #include <tuple>
 #include <SDL3/SDL.h>
+
+class ChTexture;
 
 struct ChAnimation
 {

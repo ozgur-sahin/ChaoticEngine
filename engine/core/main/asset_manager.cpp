@@ -1,5 +1,8 @@
 #include "asset_manager.h"
 
+#include <graphics/texture/Texture.h>
+#include <graphics/animation/animation.h>
+
 void ChAssetManager::AddTexture(const std::string class_code, const std::string filename)
 {
     textures.try_emplace(class_code, renderer, filename);

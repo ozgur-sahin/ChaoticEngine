@@ -1,11 +1,11 @@
 #pragma once
 
 #include <core/actors/actor.h>
-#include <graphics/renderer/renderer.h>
-#include <core/window/window.h>
 #include <core/main/asset_manager.h>
 #include <vector>
 #include <memory>
+
+class ChRenderer;
 
 class ChScene
 {
