@@ -20,7 +20,7 @@ public:
     // void addAnimation(std::string, ChAnimation);
     void Play(std::string);
     void Stop();
-    void RenderIdle(SDL_FRect, ChRenderer &);
-    void AnimationUpdate(float, SDL_FRect, ChRenderer &);
+    void RenderIdle(SDL_FRect, ChRenderer *);
+    void AnimationUpdate(float, SDL_FRect, ChRenderer *);
     SDL_FRect FindCurrentAnimationFrame();
 };

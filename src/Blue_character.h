@@ -10,8 +10,8 @@ class Blue_character : public ChActor
 public:
     Blue_character();
 
-    virtual void Tick(float, ChRenderer &) override;
-    virtual void ConfigureAnimations(ChAssetManager &) override;
+    virtual void Tick(float, ChRenderer *) override;
+    virtual void ConfigureAnimations(ChAssetManager *) override;
     virtual const std::string GetClassCode() const override
     {
         return class_code;

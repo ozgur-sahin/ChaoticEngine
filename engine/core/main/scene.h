@@ -7,19 +7,17 @@
 #include <vector>
 #include <memory>
 
-// delete these includes later
-#include "../src/player_character.h"
-
 class ChScene
 {
 
     std::vector<std::unique_ptr<ChActor>> actors{};
-    ChRenderer &renderer;
-    ChAssetManager &asset_manager;
+    ChRenderer *renderer;
+    ChAssetManager *asset_manager;
 
 public:
-    ChScene(ChRenderer &, ChAssetManager &);
-    virtual ~ChScene() {};
+    ChScene();
+    void Initialize(ChRenderer &, ChAssetManager &);
+    virtual ~ChScene() = default;
 
     virtual void TickActors(float);
     virtual void BeginPlay() {};
@@ -32,7 +30,7 @@ public:
         new_actor->ActorTransform.SetVelocity(0.005, 0.005);
         Logger::Info("New actor with texture code: " + new_actor->GetClassCode() + "\n");
         new_actor->ConfigureAnimations(asset_manager);
-        auto &animations = asset_manager.animations;
+        auto &animations = asset_manager->animations;
         new_actor->Animator.Animations = &animations.at(new_actor->GetClassCode());
 
         actors.push_back(std::move(new_actor));

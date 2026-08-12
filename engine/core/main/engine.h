@@ -27,7 +27,7 @@ class ChEngine
 
     ChAssetManager asset_manager;
 
-    ChScene scene;
+    std::unique_ptr<ChScene> scene;
 
     ChClock clock;
 
@@ -39,4 +39,6 @@ public:
     ~ChEngine();
     void run();
     void ShowFPSCounter();
+    void LoadScene(std::unique_ptr<ChScene>);
+    ChAssetManager *GetAssetManager() { return &asset_manager; }
 };

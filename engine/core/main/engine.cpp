@@ -1,10 +1,16 @@
+// SDL libraries
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_main.h>
+#include <SDL3/SDL_events.h>
+
 #include <core/main/engine.h>
+#include <core/main/scene.h>
 
 ChEngine::ChEngine(const int WindowHeight, const int WindowWidth, const int FPS)
     : window{WindowHeight, WindowWidth},
       renderer{&window},
       asset_manager{renderer},
-      scene{renderer, asset_manager},
+      //   scene{renderer, asset_manager},
       clock{},
       targetFPS{FPS},
       targetFrametime{1000.0 / targetFPS}
@@ -25,14 +31,6 @@ ChEngine::~ChEngine()
 
 void ChEngine::run()
 {
-
-    asset_manager.AddTexture("PLAYER", "../src/assets/textures/RedPlayerSpriteSheet.png");
-    asset_manager.AddTexture("BLUE", "../src/assets/textures/BlueRivalSpriteSheet.png");
-    asset_manager.LoadAnimationsFromFile("../src/assets/animations/player.anim");
-
-    scene.AddActor<PlayerCharacter>(300, 400);
-    // scene.AddActor<Blue_character>(200, 300);
-    // Logger::Info("Successfully added player character!");
     bool running = true;
 
     while (running)
@@ -53,7 +51,7 @@ void ChEngine::run()
                 switch (event.key.key)
                 {
                 case SDLK_S:
-                    scene.AddActor<PlayerCharacter>(200, 200);
+                    // scene.AddActor<PlayerCharacter>(200, 200);
                     break;
                 case SDLK_W:
                     // scene.AddActor<Blue_character>(200, 100);
@@ -66,7 +64,7 @@ void ChEngine::run()
         }
         renderer.FrameClear();
 
-        scene.Render(clock.GetDeltaTime());
+        scene->Render(clock.GetDeltaTime());
 
         ShowFPSCounter();
 
@@ -84,4 +82,11 @@ void ChEngine::ShowFPSCounter()
 {
     double FPS = 1000.0 / clock.GetDeltaTime();
     renderer.RenderDebugText(std::format("{:.2f} FPS", FPS));
+}
+
+void ChEngine::LoadScene(std::unique_ptr<ChScene> scene_ptr)
+{
+    scene = std::move(scene_ptr);
+    scene->Initialize(renderer, asset_manager);
+    scene->BeginPlay();
 }

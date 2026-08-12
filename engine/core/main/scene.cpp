@@ -1,8 +1,13 @@
 #include "scene.h"
 
-ChScene::ChScene(ChRenderer &renderer_ref, ChAssetManager &asset_mngr) : renderer{renderer_ref},
-                                                                         asset_manager{asset_mngr}
+ChScene::ChScene()
 {
+}
+
+void ChScene::Initialize(ChRenderer &rend, ChAssetManager &asstmngr)
+{
+    renderer = &rend;
+    asset_manager = &asstmngr;
 }
 
 void ChScene::TickActors(float DeltaTime)

@@ -17,6 +17,7 @@ set(SOURCE_FILES
     src/main.cpp
     src/player_character.cpp
     src/Blue_character.cpp
+    src/MyScene.cpp
     engine/core/logger/logger.cpp
     engine/graphics/renderer/renderer.cpp
     engine/graphics/texture/Texture.cpp

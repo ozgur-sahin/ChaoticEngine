@@ -10,7 +10,7 @@ ChActor::~ChActor()
 {
 }
 
-void ChActor::Tick(float DeltaTime, ChRenderer &renderer)
+void ChActor::Tick(float DeltaTime, ChRenderer *renderer)
 {
     // Logger::Info("Actor Coordinates: " + std::to_string(ActorTransform.GetPosition()[0]));
     ActorLifetime += DeltaTime; // in ms
