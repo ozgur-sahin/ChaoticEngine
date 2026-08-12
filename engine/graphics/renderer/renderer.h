@@ -22,8 +22,8 @@ public:
     ~ChRenderer();
     ChRenderer(const ChRenderer &) = delete;
     ChRenderer &operator=(const ChRenderer &) = delete;
-    ChRenderer(ChRenderer &&) = delete;
-    ChRenderer &operator=(ChRenderer &&) = delete;
+    ChRenderer(ChRenderer &&) noexcept;
+    ChRenderer &operator=(ChRenderer &&) noexcept;
     void DrawRectangle(float, float, float, float, int, int, int, int);
     void RenderFrame();
     void FrameClear();

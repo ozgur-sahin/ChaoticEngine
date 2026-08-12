@@ -17,6 +17,23 @@ ChRenderer::~ChRenderer()
     // Logger::Info("SDL renderer deleted...");
 }
 
+ChRenderer::ChRenderer(ChRenderer &&old_renderer) noexcept
+{
+    sdl_renderer = old_renderer.sdl_renderer;
+    old_renderer.sdl_renderer = nullptr;
+}
+
+ChRenderer &ChRenderer::operator=(ChRenderer &&old_renderer) noexcept
+{
+    if (this != &old_renderer)
+    {
+        SDL_DestroyRenderer(sdl_renderer);
+        sdl_renderer = old_renderer.sdl_renderer;
+        old_renderer.sdl_renderer = nullptr;
+    }
+    return *this;
+}
+
 SDL_FPoint ChRenderer::RotationTheta(const SDL_FPoint &point, const float theta)
 {
     SDL_FPoint RotatedPoint{

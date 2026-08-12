@@ -14,6 +14,23 @@ ChWindow::ChWindow(const int w, const int h)
     }
 }
 
+ChWindow::ChWindow(ChWindow &&old_window) noexcept
+{
+    sdl_window = old_window.sdl_window;
+    old_window.sdl_window = nullptr;
+}
+
+ChWindow &ChWindow::operator=(ChWindow &&old_window) noexcept
+{
+    if (this != &old_window)
+    {
+        SDL_DestroyWindow(sdl_window);
+        sdl_window = old_window.sdl_window;
+        old_window.sdl_window = nullptr;
+    }
+    return *this;
+}
+
 ChWindow::~ChWindow()
 {
     SDL_DestroyWindow(sdl_window);
