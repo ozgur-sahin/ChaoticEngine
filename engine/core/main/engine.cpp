@@ -10,7 +10,6 @@ ChEngine::ChEngine(const int WindowHeight, const int WindowWidth, const int FPS)
     : window{WindowHeight, WindowWidth},
       renderer{&window},
       asset_manager{renderer},
-      //   scene{renderer, asset_manager},
       clock{},
       targetFPS{FPS},
       targetFrametime{1000.0 / targetFPS}
