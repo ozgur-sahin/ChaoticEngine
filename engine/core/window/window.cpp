@@ -9,7 +9,7 @@ ChWindow::ChWindow(const int w, const int h)
 
     if (!sdl_window)
     {
-        Logger::Error("Window creation failed...");
+        CH_LOG_ERROR("Window creation failed...");
         throw std::runtime_error("Window creation failed! Aborting...\n");
     }
 }

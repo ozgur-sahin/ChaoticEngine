@@ -7,14 +7,14 @@ ChRenderer::ChRenderer(ChWindow *window)
     sdl_renderer = SDL_CreateRenderer(window->GetSDL_Window(), nullptr);
     if (!sdl_renderer)
     {
-        Logger::Error("SDL Renderer failed to initialize!");
+        CH_LOG_ERROR("SDL Renderer failed to initialize!");
     }
 }
 
 ChRenderer::~ChRenderer()
 {
     SDL_DestroyRenderer(sdl_renderer);
-    // Logger::Info("SDL renderer deleted...");
+    // CH_LOG_INFO("SDL renderer deleted...");
 }
 
 ChRenderer::ChRenderer(ChRenderer &&old_renderer) noexcept
@@ -77,7 +77,7 @@ void ChRenderer::DrawTriangle()
 
     if (!SDL_RenderGeometry(sdl_renderer, nullptr, vertices, 3, nullptr, 0))
     {
-        Logger::Error("Error drawing a triangle!");
+        CH_LOG_ERROR("Error drawing a triangle!");
     };
 }
 
@@ -104,7 +104,7 @@ void ChRenderer::DrawCircle(int vertexno)
 
     if (!SDL_RenderLines(sdl_renderer, points.data(), points.size()))
     {
-        Logger::Error("Error drawing a circle!");
+        CH_LOG_ERROR("Error drawing a circle!");
     };
 }
 

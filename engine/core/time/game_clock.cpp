@@ -20,7 +20,7 @@ void ChClock::Update()
     previous = current;
     current = Clock::now();
     deltaTime = current - previous;
-    // Logger::Info("Deltatime: ");
+    // CH_LOG_INFO("Deltatime: ");
 }
 
 void ChClock::EnforceFrameLimit(double targetFrametime)
@@ -29,7 +29,7 @@ void ChClock::EnforceFrameLimit(double targetFrametime)
     if (deltaTime < DurationTargetFrameTime)
     {
         auto SleepDuration = DurationTargetFrameTime - deltaTime;
-        // Logger::Info("Sleeping for " + std::to_string(SleepDuration.count()) + " ms");
+        // CH_LOG_INFO("Sleeping for " + std::to_string(SleepDuration.count()) + " ms");
         std::this_thread::sleep_for(SleepDuration);
     }
 }

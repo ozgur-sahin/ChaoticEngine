@@ -6,7 +6,7 @@ void ChActorAnimator::Play(std::string AnimationName)
     ChAnimation *Animation = &Animations->at(AnimationName);
     if (!Animation)
     {
-        Logger::Info("Bohoo");
+        CH_LOG_INFO("Bohoo");
     }
     currentAnimation = Animation;
     AnimationRunTime = 0;
@@ -39,7 +39,7 @@ void ChActorAnimator::AnimationUpdate(float DeltaTime, SDL_FRect destrect, ChRen
     }
     if (AnimationRunTime < 0)
     {
-        Logger::Error("Logic error in animation update! AnimationRunTime is negative!");
+        CH_LOG_ERROR("Logic error in animation update! AnimationRunTime is negative!");
     }
 
     SDL_FRect srcrect = FindCurrentAnimationFrame();
@@ -53,13 +53,13 @@ SDL_FRect ChActorAnimator::FindCurrentAnimationFrame()
     auto frames = currentAnimation->frames;
     auto frametimetable = currentAnimation->frameTimeTable;
 
-    // Logger::Info("Animation runtime: " + std::to_string(AnimationRunTime) + "\n");
+    // CH_LOG_INFO("Animation runtime: " + std::to_string(AnimationRunTime) + "\n");
 
     for (size_t i = 0; i < frames.size(); i++) // implement binary search here if animation frames is expected to explode in the future
     {
         if (AnimationRunTime <= frametimetable.at(i))
         {
-            // Logger::Info("Frame " + std::to_string(i) + " being used.\n");
+            // CH_LOG_INFO("Frame " + std::to_string(i) + " being used.\n");
             return std::get<SDL_FRect>(frames.at(i));
         }
     }

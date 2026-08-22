@@ -1,5 +1,10 @@
 #include "logger.h"
 
+void Logger::Debug(const std::string &strdebug)
+{
+    std::cout << "LOGGER[DEBUG]: " + strdebug + "\n";
+}
+
 void Logger::Info(const std::string &strmsg)
 {
     std::cout << "LOGGER[INFO]: " << strmsg << "\n";

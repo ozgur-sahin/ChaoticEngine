@@ -16,11 +16,11 @@ ChEngine::ChEngine(const int WindowHeight, const int WindowWidth, const int FPS)
 {
     if (!SDL_Init(SDL_INIT_VIDEO))
     {
-        Logger::Error("SDL initialization failed");
+        CH_LOG_ERROR("SDL initialization failed");
         throw std::runtime_error("SDL initialization failed. Aborting...\n");
     }
 
-    Logger::Info("Engine initialized...");
+    CH_LOG_INFO("Engine initialized...");
 }
 
 ChEngine::~ChEngine()
@@ -34,7 +34,7 @@ void ChEngine::run()
 
     while (running)
     {
-        // Logger::Info("Event loop started");
+        // CH_LOG_INFO("Event loop started");
         SDL_Event event;
 
         while (SDL_PollEvent(&event))
@@ -46,7 +46,7 @@ void ChEngine::run()
                 break;
 
             case SDL_EVENT_KEY_DOWN:
-                Logger::Info("A key was pressed down");
+                CH_LOG_INFO("A key was pressed down");
                 switch (event.key.key)
                 {
                 case SDLK_S:
@@ -56,7 +56,7 @@ void ChEngine::run()
                     // scene.AddActor<Blue_character>(200, 100);
                     break;
                 default:
-                    Logger::Info("Couldn't find which key was pressed.");
+                    CH_LOG_DEBUG("Couldn't find which key was pressed.");
                 }
                 break;
             }
@@ -72,8 +72,8 @@ void ChEngine::run()
         clock.Update();
         clock.EnforceFrameLimit(targetFrametime);
 
-        // Logger::Info("Frametime = " + std::to_string(clock.GetDeltaTime()) + "ms");
-        // Logger::Info("FPS: " + std::to_string(1000.0 / clock.GetDeltaTime()));
+        // CH_LOG_INFO("Frametime = " + std::to_string(clock.GetDeltaTime()) + "ms");
+        // CH_LOG_INFO("FPS: " + std::to_string(1000.0 / clock.GetDeltaTime()));
     }
 }
 

@@ -15,7 +15,7 @@ ChTexture::ChTexture(ChRenderer &renderer, std::string filename)
     SDL_Surface *sdl_surface = IMG_Load(filename.data());
     if (!sdl_surface)
     {
-        Logger::Error("Unable to open the file: " + filename + "!");
+        CH_LOG_ERROR("Unable to open the file: " + filename + "!");
         throw std::runtime_error("Unable to open the file: " + filename + "!");
     }
     sdl_texture = SDL_CreateTextureFromSurface(renderer.GetSDL_Renderer(), sdl_surface);
