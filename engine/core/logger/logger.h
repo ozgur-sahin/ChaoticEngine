@@ -13,27 +13,39 @@ enum class Log_Level : int
     Error = 3
 };
 
+constexpr int operator+(Log_Level l)
+{
+    return static_cast<int>(l);
+}
+
 class Logger
 {
 public:
-    static void Debug(const std::string &strdebug);
-    static void Info(const std::string &strmsg);
-    static void Warning(const std::string &strwarn);
-    static void Error(const std::string &strerr);
+    std::ostream *os{};
+    std::ostream *errstream{};
+
+    Logger();
+
+    void Debug(const std::string &);
+    void Info(const std::string &);
+    void Warning(const std::string &);
+    void Error(const std::string &);
 };
 
-#define CH_LOG_DEBUG(...)                                             \
-    if constexpr (CH_LOG_LEVEL <= static_cast<int>(Log_Level::Debug)) \
-        Logger::Debug(__VA_ARGS__);
+extern Logger logger;
 
-#define CH_LOG_INFO(...)                                             \
-    if constexpr (CH_LOG_LEVEL <= static_cast<int>(Log_Level::Info)) \
-        Logger::Info(__VA_ARGS__);
+#define CH_LOG_DEBUG(...)                            \
+    if constexpr (CH_LOG_LEVEL <= +Log_Level::Debug) \
+        logger.Debug(__VA_ARGS__);
 
-#define CH_LOG_WARNING(...)                                             \
-    if constexpr (CH_LOG_LEVEL <= static_cast<int>(Log_Level::Warning)) \
-        Logger::Warning(__VA_ARGS__);
+#define CH_LOG_INFO(...)                            \
+    if constexpr (CH_LOG_LEVEL <= +Log_Level::Info) \
+        logger.Info(__VA_ARGS__);
 
-#define CH_LOG_ERROR(...)                                             \
-    if constexpr (CH_LOG_LEVEL <= static_cast<int>(Log_Level::Error)) \
-        Logger::Error(__VA_ARGS__);
+#define CH_LOG_WARNING(...)                            \
+    if constexpr (CH_LOG_LEVEL <= +Log_Level::Warning) \
+        logger.Warning(__VA_ARGS__);
+
+#define CH_LOG_ERROR(...)                            \
+    if constexpr (CH_LOG_LEVEL <= +Log_Level::Error) \
+        logger.Error(__VA_ARGS__);

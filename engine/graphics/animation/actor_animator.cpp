@@ -63,6 +63,6 @@ SDL_FRect ChActorAnimator::FindCurrentAnimationFrame()
             return std::get<SDL_FRect>(frames.at(i));
         }
     }
-    Logger::Warning("Check logic, the frame finder got out of the loop without finding the correct frame.");
+    CH_LOG_WARNING("Check logic, the frame finder got out of the loop without finding the correct frame.");
     return std::get<SDL_FRect>(frames.back());
 }

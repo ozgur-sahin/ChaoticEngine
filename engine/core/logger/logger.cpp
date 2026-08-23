@@ -1,21 +1,29 @@
 #include "logger.h"
 
+Logger logger;
+
+Logger::Logger()
+{
+    os = &std::cout;
+    errstream = &std::cerr;
+}
+
 void Logger::Debug(const std::string &strdebug)
 {
-    std::cout << "LOGGER[DEBUG]: " + strdebug + "\n";
+    *os << "LOGGER[DEBUG]: " + strdebug + "\n";
 }
 
 void Logger::Info(const std::string &strmsg)
 {
-    std::cout << "LOGGER[INFO]: " << strmsg << "\n";
+    *os << "LOGGER[INFO]: " << strmsg << "\n";
 }
 
 void Logger::Warning(const std::string &strwarn)
 {
-    std::cout << "LOGGER[WARNING]: " << strwarn << "\n";
+    *os << "LOGGER[WARNING]: " << strwarn << "\n";
 }
 
 void Logger::Error(const std::string &strerr)
 {
-    std::cerr << "LOGGER[ERROR]: " << strerr << "\n";
+    *errstream << "LOGGER[ERROR]: " << strerr << "\n";
 }
