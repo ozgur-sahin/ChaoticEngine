@@ -21,10 +21,18 @@ constexpr int operator+(Log_Level l)
 class Logger
 {
 public:
-    std::ostream *os{};
-    std::ostream *errstream{};
+    std::ostream *outstream{&std::cout};
+    std::ostream *errstream{&std::cerr};
 
     Logger();
+    Logger(std::ostream *, std::ostream *);
+    ~Logger();
+
+    Logger(const Logger &) = delete;
+    Logger &operator=(const Logger &) = delete;
+
+    Logger(Logger &&);
+    Logger &operator=(Logger &&);
 
     void Debug(const std::string &);
     void Info(const std::string &);

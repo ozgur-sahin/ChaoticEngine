@@ -14,6 +14,7 @@ class ChScene;
 
 class ChEngine
 {
+private:
     ChWindow window;
 
     ChRenderer renderer;
